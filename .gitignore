@@ -1,26 +1,87 @@
-# Folder library - ukurannya ratusan MB, bisa dibuat ulang dengan "npm install"
+# ============================================================
+#  FILE YANG TIDAK IKUT KE GITHUB
+# ------------------------------------------------------------
+#  Daftar ini dibaca Git sebelum commit. File yang cocok dengan
+#  pola di bawah akan dilewati, tidak ikut ter-upload.
+#
+#  ⚠️ PENTING: aturan ini hanya berlaku untuk file yang BELUM
+#  pernah di-commit. Kalau sebuah file rahasia terlanjur masuk
+#  commit, menambahkannya ke sini TIDAK menghapusnya dari
+#  riwayat Git. Lihat penjelasan di README.md.
+# ============================================================
+
+# ---------- 1. RAHASIA — paling berbahaya kalau bocor ----------
+# Berisi password database, kunci API, dan kunci aplikasi.
+# .env.example sengaja DIIZINKAN karena isinya cuma contoh
+# nama variabel tanpa nilai asli, berguna sebagai panduan.
+.env
+.env.*
+!.env.example
+
+# Kunci pribadi & sertifikat
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+id_rsa
+id_ed25519
+
+# ---------- 2. DATA — bisa memuat data pribadi orang lain ----------
+# Hasil export/dump database. Isinya bisa berupa data asli pengunjung.
+# Kalau suatu saat perlu commit file .sql yang aman (misalnya struktur
+# tabel tanpa data), paksa dengan: git add -f nama-file.sql
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# ---------- 3. FOLDER BESAR — bisa dibuat ulang otomatis ----------
+# CATATAN: Git tidak mengenal komentar di akhir baris.
+# Menulis "node_modules/  # keterangan" membuat seluruh baris
+# dianggap nama file, sehingga aturannya tidak berfungsi.
+# Komentar harus berdiri sendiri di barisnya, seperti ini.
+
+# ratusan MB - kembalikan dengan: npm install
 node_modules/
 
-# Hasil build
+# library PHP - kembalikan dengan: composer install
+/backend/vendor/
+
+# hasil build - kembalikan dengan: npm run build
 dist/
 build/
 
-# File rahasia (password database, kunci API) - JANGAN PERNAH masuk ke Git
-.env
-.env.local
-.env.*.local
+# laporan hasil test (Phase 8)
+coverage/
+.vite/
+.cache/
 
-# File log
+# ---------- 4. FILE LOG ----------
 *.log
+logs/
 npm-debug.log*
 
-# File bawaan editor & sistem
+# ---------- 5. BAWAAN EDITOR & SISTEM OPERASI ----------
+# Hanya berguna di komputer sendiri, tidak ada gunanya untuk orang lain.
 .vscode/*
 !.vscode/extensions.json
 .idea/
 .DS_Store
 Thumbs.db
+desktop.ini
+*.swp
 
-# Laravel (nanti di Phase 9+)
-/backend/vendor/
+# ---------- 6. LARAVEL (nanti di Phase 9+) ----------
+/backend/storage/framework/
+/backend/storage/logs/
 /backend/storage/*.key
+/backend/bootstrap/cache/*
+!/backend/bootstrap/cache/.gitignore
+/backend/public/storage
+/backend/.phpunit.result.cache
+
+# ---------- 7. FILE ATURAN LOKAL ----------
+# AGENTS.md berisi aturan kerja pribadi. Sengaja tidak masuk Git
+# dan tidak di-push. Dokumentasi publik ada di README.md.
+AGENTS.md
