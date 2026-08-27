@@ -23,7 +23,7 @@ Penjelasan lengkap ada di [frontend/README.md](frontend/README.md).
 
 ## Teknologi
 
-**Frontend:** React · Vite · Tailwind CSS · Lucide React
+**Frontend:** React · Vite · Tailwind CSS
 **Backend (nanti):** Laravel · MySQL
 
 ## Progress
