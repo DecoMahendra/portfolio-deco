@@ -1,0 +1,139 @@
+/* ============================================================
+   DESIGN SYSTEM — Phase 2
+   ------------------------------------------------------------
+   File ini adalah "kamus" untuk seluruh website.
+   Warna, font, dan ukuran didaftarkan SATU KALI di sini,
+   lalu dipakai di semua komponen lewat class Tailwind.
+
+   Contoh: --color-accent didaftarkan di bawah,
+   otomatis bisa dipakai sebagai class "text-accent",
+   "bg-accent", atau "border-accent".
+
+   Kalau suatu saat mau ganti warna aksen dari lime ke biru,
+   cukup ubah satu baris di file ini. Seluruh website ikut berubah.
+   ============================================================ */
+
+@import "tailwindcss";
+
+/* Tailwind v4 memindai SEMUA file di project untuk mencari nama class.
+   README.md berisi tabel dokumentasi yang menyebut nama class (bg-page, dll),
+   dan itu ikut terbawa ke file CSS hasil build padahal tidak dipakai.
+   Baris ini mengecualikan README dari pemindaian. */
+@source not "../README.md";
+
+@theme {
+  /* ---------- WARNA ----------
+     Disusun dari yang paling gelap (latar) ke paling terang (teks). */
+
+  --color-page: #09090b; /* latar halaman, hitam pekat        -> bg-page      */
+  --color-surface: #101014; /* kartu / panel, sedikit lebih terang -> bg-surface   */
+  --color-raised: #17171c; /* elemen di atas kartu             -> bg-raised    */
+  --color-line: #26262b; /* garis pembatas                   -> border-line  */
+  --color-line-soft: #1b1b20; /* garis pembatas yang lebih samar   -> border-line-soft */
+
+  --color-heading: #fafafa; /* teks judul, paling terang        -> text-heading */
+  --color-body: #a1a1aa; /* teks paragraf, abu terang        -> text-body    */
+  --color-faint: #6b6b76; /* teks pendukung, abu gelap        -> text-faint   */
+
+  --color-accent: #d4ff3f; /* warna aksen: lime                -> text-accent  */
+  --color-accent-deep: #a8cc2a; /* versi lebih gelap, untuk hover    -> bg-accent-deep */
+
+  /* ---------- FONT ----------
+     Hanya 2 font yang diunduh dari internet, supaya website tetap cepat.
+     Space Grotesk = judul (berkarakter, agak teknis)
+     Inter         = paragraf (paling nyaman dibaca)
+     Font mono memakai font bawaan komputer, jadi tidak menambah beban. */
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---------- UKURAN TEKS ----------
+     clamp(minimal, ideal, maksimal) = ukuran teks ikut menyesuaikan lebar layar
+     secara otomatis, tanpa perlu breakpoint manual. */
+
+  --text-display: clamp(2.75rem, 1.6rem + 5vw, 5.5rem); /* judul hero   */
+  --text-title: clamp(2rem, 1.4rem + 2.4vw, 3.25rem); /* judul section  */
+  --text-eyebrow: 0.6875rem; /* label kecil di atas judul                */
+
+  /* ---------- SUDUT MELENGKUNG ---------- */
+  --radius-card: 1rem;
+
+  /* ---------- KURVA ANIMASI ----------
+     Gerakan yang cepat di awal lalu melambat di akhir. Terasa lebih natural
+     dibanding kecepatan rata. */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================================
+   GAYA DASAR
+   Aturan yang berlaku untuk seluruh halaman.
+   ============================================================ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Saat klik menu, halaman meluncur ke section tujuan.
+     Tanpa baris ini, judul section akan tertutup navbar yang menempel di atas. */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  @media (min-width: 48rem) {
+    section[id] {
+      scroll-margin-top: 6rem;
+    }
+  }
+
+  /* Warna saat teks diblok/di-select */
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-page);
+  }
+
+  /* Kotak fokus saat navigasi pakai tombol Tab (penting untuk aksesibilitas).
+     :focus-visible = hanya muncul untuk keyboard, tidak muncul saat diklik mouse. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Scrollbar disesuaikan dengan tema gelap */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-page);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-faint);
+  }
+
+  /* Menghormati pengaturan "kurangi animasi" di sistem operasi pengguna.
+     Sebagian orang pusing/mual melihat animasi. Ini wajib ada. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

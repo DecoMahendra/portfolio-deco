@@ -1,0 +1,26 @@
+# Folder library - ukurannya ratusan MB, bisa dibuat ulang dengan "npm install"
+node_modules/
+
+# Hasil build
+dist/
+build/
+
+# File rahasia (password database, kunci API) - JANGAN PERNAH masuk ke Git
+.env
+.env.local
+.env.*.local
+
+# File log
+*.log
+npm-debug.log*
+
+# File bawaan editor & sistem
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Laravel (nanti di Phase 9+)
+/backend/vendor/
+/backend/storage/*.key

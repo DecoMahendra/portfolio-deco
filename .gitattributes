@@ -1,0 +1,20 @@
+# Menyeragamkan akhir baris (line ending) di dalam repository.
+#
+# Masalahnya: Windows mengakhiri baris dengan CRLF, sedangkan Linux/Mac dengan LF.
+# Tanpa file ini, saat project dibuka di sistem lain (atau di-deploy ke server Linux),
+# Git bisa menganggap SELURUH isi file berubah padahal tidak ada yang diedit.
+#
+# text=auto eol=lf = simpan semua file teks di repository dengan LF.
+# Di Windows tetap ditulis sebagai CRLF saat file dibuka, jadi tidak mengganggu.
+* text=auto eol=lf
+
+# File biner - jangan diutak-atik sama sekali.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
