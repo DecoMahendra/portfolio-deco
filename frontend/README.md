@@ -2,7 +2,7 @@
 
 Website portfolio pribadi. Dibuat dengan React + Vite + Tailwind CSS.
 
-Status saat ini: **Phase 2 — Design System + Navbar selesai.**
+Status saat ini: **Phase 3 — Hero + About selesai.**
 
 ---
 
@@ -131,7 +131,7 @@ Dokumentasi resmi v4: https://tailwindcss.com/docs
 |---|---|
 | ~~1~~ | ~~Setup~~ ✅ selesai |
 | ~~2~~ | ~~Design System + Navbar~~ ✅ selesai |
-| 3 | Hero + About |
+| ~~3~~ | ~~Hero + About~~ ✅ selesai |
 | 4 | Skills + Experience |
 | 5 | Projects + Certificates |
 | 6 | Services + Contact |
