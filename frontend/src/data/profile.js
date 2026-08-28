@@ -16,7 +16,7 @@ export const PROFILE = {
   role: 'Full Stack Developer',
 
   // Ditampilkan sebagai label kecil di About.
-  location: 'Indonesia',
+  location: 'Indramayu, Jawa Barat',
 
   // Label di bagian paling atas Hero, bersebelahan dengan titik hijau berkedip.
   availability: 'Tersedia untuk project baru',
@@ -28,7 +28,8 @@ export const PROFILE = {
   // Paragraf untuk section About. Boleh ditambah atau dikurangi jumlahnya —
   // tampilannya menyesuaikan otomatis.
   bio: [
-    'Saya adalah Full Stack Developer yang memiliki ketertarikan dalam membangun aplikasi web modern dari sisi frontend hingga backend. Saya senang mempelajari teknologi baru, menyelesaikan masalah melalui kode, dan mengembangkan project yang memiliki tampilan menarik serta fungsional.',
+    'Mahasiswa D4 Sistem Informasi Kota Cerdas di Politeknik Negeri Indramayu, dengan ketertarikan dalam membangun aplikasi web modern dari sisi frontend hingga backend.',
+    'Saya senang mempelajari teknologi baru, menyelesaikan masalah melalui kode, dan mengembangkan project yang memiliki tampilan menarik serta fungsional.',
   ],
 
   // Teks pengganti foto untuk pembaca layar dan saat gambar gagal dimuat.

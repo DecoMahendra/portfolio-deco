@@ -1,6 +1,7 @@
 import Navbar from './components/layout/Navbar'
 import About from './components/sections/About'
 import Hero from './components/sections/Hero'
+import Skills from './components/sections/Skills'
 import Section from './components/ui/Section'
 
 /*
@@ -40,13 +41,7 @@ function App() {
 
         <About />
 
-        <Section
-          id="skills"
-          eyebrow="02 — Skills"
-          title="Keahlian & pengalaman"
-          description="Bagian ini akan diisi di Phase 4: daftar teknologi yang dikuasai dan riwayat pengalaman."
-          className="border-t border-line-soft"
-        />
+        <Skills />
 
         <Section
           id="projects"
