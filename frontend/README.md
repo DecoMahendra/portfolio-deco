@@ -2,7 +2,7 @@
 
 Website portfolio pribadi. Dibuat dengan React + Vite + Tailwind CSS.
 
-Status saat ini: **Phase 3 — Hero + About selesai.**
+Status saat ini: **Phase 4 — Skills + Experience selesai.**
 
 ---
 
@@ -36,21 +36,23 @@ Untuk menghentikan server: tekan `Ctrl + C` di terminal.
 
 ```
 frontend/
-├── public/          File yang disalin apa adanya. Bisa diakses langsung
-│                    lewat alamat, contoh: /favicon.svg
+├── public/            File yang disalin apa adanya. Bisa diakses langsung
+│                      lewat alamat, contoh: /favicon.svg
 ├── src/
-│   ├── assets/      Gambar yang dipakai di dalam kode (foto profil, dll)
+│   ├── assets/        Gambar yang dipakai di dalam kode (foto profil, dll)
 │   ├── components/
-│   │   ├── layout/  Kerangka halaman: Navbar, MobileMenu, MenuToggle
-│   │   └── ui/      Bata dasar yang dipakai berulang: Container, Section
-│   ├── data/        Isi/konten yang dipisah dari tampilan (navigation.js)
-│   ├── hooks/       Logika yang bisa dipakai ulang (useActiveSection, dll)
-│   ├── App.jsx      Komponen utama - merangkai seluruh halaman
-│   ├── main.jsx     Titik mulai aplikasi. Menempelkan App ke index.html
-│   └── index.css    Design system: warna, font, ukuran, gaya dasar
-├── index.html       Kerangka HTML. Isi <head> untuk SEO & font ada di sini
-├── vite.config.js   Pengaturan Vite (plugin React & Tailwind didaftarkan di sini)
-└── package.json     Daftar library yang dipakai project ini
+│   │   ├── layout/    Kerangka halaman: Navbar, MobileMenu, MenuToggle
+│   │   ├── sections/  Isi halaman: Hero, About, Skills
+│   │   └── ui/        Bata dasar yang dipakai berulang: Container, Section
+│   ├── data/          Isi/konten yang dipisah dari tampilan
+│                      (navigation, profile, skills, experience, education)
+│   ├── hooks/         Logika yang bisa dipakai ulang (useActiveSection, dll)
+│   ├── App.jsx        Komponen utama - merangkai seluruh halaman
+│   ├── main.jsx       Titik mulai aplikasi. Menempelkan App ke index.html
+│   └── index.css      Design system: warna, font, ukuran, gaya dasar
+├── index.html         Kerangka HTML. Isi <head> untuk SEO & font ada di sini
+├── vite.config.js     Pengaturan Vite (plugin React & Tailwind didaftarkan di sini)
+└── package.json       Daftar library yang dipakai project ini
 ```
 
 ---
@@ -132,7 +134,7 @@ Dokumentasi resmi v4: https://tailwindcss.com/docs
 | ~~1~~ | ~~Setup~~ ✅ selesai |
 | ~~2~~ | ~~Design System + Navbar~~ ✅ selesai |
 | ~~3~~ | ~~Hero + About~~ ✅ selesai |
-| 4 | Skills + Experience |
+| ~~4~~ | ~~Skills + Experience~~ ✅ selesai |
 | 5 | Projects + Certificates |
 | 6 | Services + Contact |
 | 7 | Responsive + Animation + SEO |
