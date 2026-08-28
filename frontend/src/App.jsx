@@ -1,16 +1,16 @@
 import Navbar from './components/layout/Navbar'
-import Container from './components/ui/Container'
+import About from './components/sections/About'
+import Hero from './components/sections/Hero'
 import Section from './components/ui/Section'
 
 /*
   App — merangkai seluruh halaman.
 
-  Di Phase 2 ini, isi tiap section masih berupa penanda sementara.
-  Yang sudah benar-benar jadi: design system (warna & font), navbar,
-  dan kerangka section beserta id-nya.
+  Hero dan About sudah jadi (Phase 3). Section sisanya masih berupa
+  penanda sementara dan akan diisi di phase berikutnya.
 
-  Section-section di bawah sengaja dibuat sekarang walau isinya belum ada,
-  karena navbar butuh id section itu untuk bisa melompat dan menandai menu aktif.
+  Penanda itu sengaja tetap ada karena navbar butuh id section-nya
+  untuk bisa melompat dan menandai menu yang sedang aktif.
 */
 function App() {
   return (
@@ -36,42 +36,9 @@ function App() {
       />
 
       <main>
-        {/* ---------- HERO (isi sebenarnya dibuat di Phase 3) ---------- */}
-        <section
-          id="home"
-          aria-labelledby="home-heading"
-          className="flex min-h-svh items-center pt-24 pb-20"
-        >
-          <Container>
-            <p className="mb-6 font-mono text-eyebrow uppercase tracking-[0.22em] text-accent">
-              Phase 2 — Design System &amp; Navbar
-            </p>
+        <Hero />
 
-            <h1
-              id="home-heading"
-              className="max-w-4xl font-display text-display font-bold leading-[0.95] tracking-tight text-heading"
-            >
-              Deco Mahendra,
-              <br />
-              <span className="text-faint">Full Stack Developer.</span>
-            </h1>
-
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-body">
-              Kerangka halaman dan sistem desain sudah terpasang. Coba scroll ke
-              bawah dan perhatikan menu di atas ikut menyala mengikuti bagian
-              yang sedang kamu lihat.
-            </p>
-          </Container>
-        </section>
-
-        {/* ---------- SECTION SEMENTARA ---------- */}
-        <Section
-          id="about"
-          eyebrow="01 — About"
-          title="Tentang saya"
-          description="Bagian ini akan diisi di Phase 3: foto, cerita singkat, dan latar belakang."
-          className="border-t border-line-soft"
-        />
+        <About />
 
         <Section
           id="skills"
