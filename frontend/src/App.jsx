@@ -1,6 +1,7 @@
 import Navbar from './components/layout/Navbar'
 import About from './components/sections/About'
 import Hero from './components/sections/Hero'
+import Projects from './components/sections/Projects'
 import Skills from './components/sections/Skills'
 import Section from './components/ui/Section'
 
@@ -43,13 +44,7 @@ function App() {
 
         <Skills />
 
-        <Section
-          id="projects"
-          eyebrow="03 — Projects"
-          title="Karya & sertifikat"
-          description="Bagian ini akan diisi di Phase 5: project yang pernah dikerjakan beserta sertifikat."
-          className="border-t border-line-soft"
-        />
+        <Projects />
 
         <Section
           id="services"
