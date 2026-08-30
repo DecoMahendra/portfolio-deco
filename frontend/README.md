@@ -2,7 +2,7 @@
 
 Website portfolio pribadi. Dibuat dengan React + Vite + Tailwind CSS.
 
-Status saat ini: **Phase 4 — Skills + Experience selesai.**
+Status saat ini: **Phase 5 — Projects + Certificates selesai.**
 
 ---
 
@@ -42,10 +42,11 @@ frontend/
 │   ├── assets/        Gambar yang dipakai di dalam kode (foto profil, dll)
 │   ├── components/
 │   │   ├── layout/    Kerangka halaman: Navbar, MobileMenu, MenuToggle
-│   │   ├── sections/  Isi halaman: Hero, About, Skills
+│   │   ├── sections/  Isi halaman: Hero, About, Skills, Projects
 │   │   └── ui/        Bata dasar yang dipakai berulang: Container, Section
 │   ├── data/          Isi/konten yang dipisah dari tampilan
-│                      (navigation, profile, skills, experience, education)
+│                      (navigation, profile, skills, experience,
+│                      education, projects, certificates)
 │   ├── hooks/         Logika yang bisa dipakai ulang (useActiveSection, dll)
 │   ├── App.jsx        Komponen utama - merangkai seluruh halaman
 │   ├── main.jsx       Titik mulai aplikasi. Menempelkan App ke index.html
@@ -135,7 +136,7 @@ Dokumentasi resmi v4: https://tailwindcss.com/docs
 | ~~2~~ | ~~Design System + Navbar~~ ✅ selesai |
 | ~~3~~ | ~~Hero + About~~ ✅ selesai |
 | ~~4~~ | ~~Skills + Experience~~ ✅ selesai |
-| 5 | Projects + Certificates |
+| ~~5~~ | ~~Projects + Certificates~~ ✅ selesai |
 | 6 | Services + Contact |
 | 7 | Responsive + Animation + SEO |
 | 8 | Testing — setelah ini website siap dikirim ke recruiter |
