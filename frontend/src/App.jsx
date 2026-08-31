@@ -1,18 +1,17 @@
+import Footer from './components/layout/Footer'
 import Navbar from './components/layout/Navbar'
 import About from './components/sections/About'
+import Contact from './components/sections/Contact'
 import Hero from './components/sections/Hero'
 import Projects from './components/sections/Projects'
 import Skills from './components/sections/Skills'
-import Section from './components/ui/Section'
 
 /*
   App — merangkai seluruh halaman.
 
-  Hero dan About sudah jadi (Phase 3). Section sisanya masih berupa
-  penanda sementara dan akan diisi di phase berikutnya.
-
-  Penanda itu sengaja tetap ada karena navbar butuh id section-nya
-  untuk bisa melompat dan menandai menu yang sedang aktif.
+  Seluruh section sudah terisi: Hero, About, Skills, Projects, Contact.
+  Section Services dihapus karena belum ada isi yang benar-benar perlu
+  ditampilkan — lebih baik tidak ada daripada terasa dipaksakan.
 */
 function App() {
   return (
@@ -46,22 +45,10 @@ function App() {
 
         <Projects />
 
-        <Section
-          id="services"
-          eyebrow="04 — Services"
-          title="Layanan"
-          description="Bagian ini akan diisi di Phase 6: jenis pekerjaan yang bisa saya kerjakan."
-          className="border-t border-line-soft"
-        />
-
-        <Section
-          id="contact"
-          eyebrow="05 — Contact"
-          title="Mari bekerja sama"
-          description="Bagian ini akan diisi di Phase 6: form kontak dan tautan media sosial."
-          className="border-t border-line-soft"
-        />
+        <Contact />
       </main>
+
+      <Footer />
     </>
   )
 }

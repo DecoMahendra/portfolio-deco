@@ -19,7 +19,7 @@ export const PROFILE = {
   location: 'Indramayu, Jawa Barat',
 
   // Label di bagian paling atas Hero, bersebelahan dengan titik hijau berkedip.
-  availability: 'Tersedia untuk project baru',
+  availability: 'Terbuka untuk project freelance',
 
   // Satu kalimat di bawah judul besar Hero.
   tagline:
