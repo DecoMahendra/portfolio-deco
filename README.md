@@ -6,7 +6,7 @@ Website portfolio pribadi untuk personal branding sebagai Full Stack Developer.
 
 | Folder | Isi | Status |
 |---|---|---|
-| `frontend/` | Website portfolio — React + Vite + Tailwind CSS | 🚧 Dikerjakan (Phase 5/8) |
+| `frontend/` | Website portfolio — React + Vite + Tailwind CSS | 🚧 Dikerjakan (Phase 6/8) |
 | `backend/` | Laravel API + Admin Dashboard | ⏸ Belum dimulai (Phase 9–14) |
 
 ## Cara menjalankan
@@ -34,7 +34,7 @@ Penjelasan lengkap ada di [frontend/README.md](frontend/README.md).
 - [x] Phase 3 — Hero + About
 - [x] Phase 4 — Skills + Experience
 - [x] Phase 5 — Projects + Certificates
-- [ ] Phase 6 — Services + Contact
+- [x] Phase 6 — Contact + Footer
 - [ ] Phase 7 — Responsive + Animation + SEO
 - [ ] Phase 8 — Testing
 
