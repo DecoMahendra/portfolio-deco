@@ -1,4 +1,5 @@
 import Container from './Container'
+import { useInView } from '../../hooks/useInView'
 
 /*
   Section — kerangka standar untuk setiap bagian halaman (About, Skills, dst).
@@ -20,11 +21,24 @@ import Container from './Container'
 function Section({ id, eyebrow, title, description, children, className = '' }) {
   const headingId = `${id}-heading`
 
+  /* Section memudar naik saat masuk layar. Ditaruh di sini, bukan di tiap
+     section satu per satu — About, Skills, Projects, dan Contact semuanya
+     memakai component ini, jadi cukup ditulis sekali.
+
+     Hero tidak ikut karena posisinya sudah di layar pertama; menyembunyikannya
+     lalu memunculkan justru membuat halaman terasa lambat saat dibuka. */
+  const { ref, isInView } = useInView()
+
   return (
     <section
+      ref={ref}
       id={id}
       aria-labelledby={headingId}
-      className={`py-24 md:py-32 ${className}`}
+      /* motion-reduce:transition-none menghormati pengaturan "kurangi animasi"
+         di sistem operasi pengunjung — isinya langsung muncul tanpa bergerak. */
+      className={`py-24 transition-all duration-700 ease-out-expo motion-reduce:transition-none md:py-32 ${
+        isInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+      } ${className}`}
     >
       <Container>
         {eyebrow && (
