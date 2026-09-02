@@ -2,7 +2,7 @@
 
 Website portfolio pribadi. Dibuat dengan React + Vite + Tailwind CSS.
 
-Status saat ini: **Phase 6 — Contact + Footer selesai.**
+Status saat ini: **Phase 7 — Responsive + Animation + SEO selesai.**
 
 ---
 
@@ -139,7 +139,7 @@ Dokumentasi resmi v4: https://tailwindcss.com/docs
 | ~~4~~ | ~~Skills + Experience~~ ✅ selesai |
 | ~~5~~ | ~~Projects + Certificates~~ ✅ selesai |
 | ~~6~~ | ~~Contact + Footer~~ ✅ selesai |
-| 7 | Responsive + Animation + SEO |
+| ~~7~~ | ~~Responsive + Animation + SEO~~ ✅ selesai |
 | 8 | Testing — setelah ini website siap dikirim ke recruiter |
 
 Phase 9–14 (Laravel + Admin Dashboard) dikerjakan setelah Phase 1–8 selesai.
