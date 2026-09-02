@@ -37,7 +37,7 @@ function Section({ id, eyebrow, title, description, children, className = '' }) 
       /* motion-reduce:transition-none menghormati pengaturan "kurangi animasi"
          di sistem operasi pengunjung — isinya langsung muncul tanpa bergerak. */
       className={`py-24 transition-all duration-700 ease-out-expo motion-reduce:transition-none md:py-32 ${
-        isInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+        isInView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
       } ${className}`}
     >
       <Container>

@@ -34,10 +34,14 @@ export function useInView() {
         observer.disconnect()
       },
       {
-        // Section dianggap "masuk layar" setelah melewati 10% bagian bawah,
-        // supaya animasinya mulai saat elemen benar-benar terlihat —
-        // bukan saat ujungnya baru sedikit menyembul.
-        rootMargin: '0px 0px -10% 0px',
+        // Section dianggap "masuk layar" setelah melewati 20% bagian bawah.
+        //
+        // Kenapa selambat itu? Tiap section punya padding atas yang besar
+        // (96-128px). Ujung elemennya masuk layar jauh sebelum judulnya
+        // terlihat. Kalau animasinya dimulai di situ, gerakannya sudah
+        // selesai saat teksnya baru sampai ke mata pembaca — jadi seolah
+        // tidak ada animasi sama sekali.
+        rootMargin: '0px 0px -20% 0px',
       },
     )
 
