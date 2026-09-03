@@ -33,7 +33,7 @@
 
   --color-heading: #fafafa; /* teks judul, paling terang        -> text-heading */
   --color-body: #a1a1aa; /* teks paragraf, abu terang        -> text-body    */
-  --color-faint: #6b6b76; /* teks pendukung, abu gelap        -> text-faint   */
+  --color-faint: #85858f; /* teks pendukung, abu gelap        -> text-faint   */
 
   --color-accent: #d4ff3f; /* warna aksen: lime                -> text-accent  */
   --color-accent-deep: #a8cc2a; /* versi lebih gelap, untuk hover    -> bg-accent-deep */
