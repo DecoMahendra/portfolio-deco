@@ -59,7 +59,7 @@ function MobileMenu({ isOpen, onClose, activeId }) {
                   /* transitionDelay membuat link muncul satu per satu (berurutan)
                      saat menu dibuka, bukan serentak. Terasa lebih hidup. */
                   style={{ transitionDelay: isOpen ? `${index * 50 + 80}ms` : '0ms' }}
-                  className={`flex items-baseline gap-4 py-5 font-display text-3xl font-medium tracking-tight transition-all duration-500 ease-out-expo motion-reduce:transition-none ${
+                  className={`flex items-baseline gap-4 py-5 font-display text-3xl font-bold tracking-tight transition-all duration-500 ease-out-expo motion-reduce:transition-none ${
                     isOpen ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'
                   } ${isActive ? 'text-accent' : 'text-heading'}`}
                 >

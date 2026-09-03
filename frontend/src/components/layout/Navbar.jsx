@@ -66,7 +66,7 @@ function Navbar() {
                          sedang aktif. Warna saja tidak cukup: pengguna tunanetra
                          dan pengguna buta warna tidak bisa melihatnya. */
                       aria-current={isActive ? 'true' : undefined}
-                      className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 motion-reduce:transition-none ${
+                      className={`relative rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 motion-reduce:transition-none ${
                         isActive
                           ? 'text-accent'
                           : 'text-body hover:bg-white/5 hover:text-heading'

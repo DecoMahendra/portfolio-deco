@@ -15,6 +15,47 @@
 
 @import "tailwindcss";
 
+/* ============================================================
+   FONT
+   ------------------------------------------------------------
+   Font disimpan sendiri di public/fonts/, bukan diambil dari
+   Google Fonts.
+
+   Kenapa? Mengambil dari Google berarti browser harus menghubungi
+   DUA server asing lebih dulu (fonts.googleapis.com untuk CSS, lalu
+   fonts.gstatic.com untuk berkas fontnya). Tiap server baru butuh
+   pencarian alamat, koneksi, dan pengamanan TLS. Di jaringan lambat
+   itu memakan 0,6-1,2 detik sebelum satu huruf pun tergambar.
+
+   Dengan disimpan sendiri, font datang lewat koneksi ke Vercel yang
+   sudah terbuka sejak halaman dimuat. Tidak ada server tambahan.
+
+   Inter adalah font variabel: satu berkas mencakup seluruh bobot,
+   jadi ditulis "font-weight: 100 900" — browser meracik bobot yang
+   diminta dari berkas yang sama.
+
+   font-display: swap = tampilkan teks pakai font cadangan dulu,
+   jangan biarkan halaman kosong sambil menunggu font selesai diunduh.
+
+   Keduanya berlisensi SIL Open Font License, jadi boleh disimpan sendiri.
+   ============================================================ */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/space-grotesk-latin.woff2") format("woff2");
+}
+
 /* Tailwind v4 memindai SEMUA file di project untuk mencari nama class.
    README.md berisi tabel dokumentasi yang menyebut nama class (bg-page, dll),
    dan itu ikut terbawa ke file CSS hasil build padahal tidak dipakai.
