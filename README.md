@@ -1,12 +1,14 @@
 # Portfolio Pribadi — Deco Mahendra
 
+🔗 **[decomahendra.vercel.app](https://decomahendra.vercel.app)**
+
 Website portfolio pribadi untuk personal branding sebagai Full Stack Developer.
 
 ## Isi repository ini
 
 | Folder | Isi | Status |
 |---|---|---|
-| `frontend/` | Website portfolio — React + Vite + Tailwind CSS | 🚧 Dikerjakan (Phase 7/8) |
+| `frontend/` | Website portfolio — React + Vite + Tailwind CSS | ✅ Selesai (Phase 8/8) |
 | `backend/` | Laravel API + Admin Dashboard | ⏸ Belum dimulai (Phase 9–14) |
 
 ## Cara menjalankan
@@ -36,7 +38,7 @@ Penjelasan lengkap ada di [frontend/README.md](frontend/README.md).
 - [x] Phase 5 — Projects + Certificates
 - [x] Phase 6 — Contact + Footer
 - [x] Phase 7 — Responsive + Animation + SEO
-- [ ] Phase 8 — Testing
+- [x] Phase 8 — Testing
 
 **BAGIAN 2 — Laravel + Admin Dashboard**
 - [ ] Phase 9 — Laravel Setup

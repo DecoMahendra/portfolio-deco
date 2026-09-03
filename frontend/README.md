@@ -2,7 +2,7 @@
 
 Website portfolio pribadi. Dibuat dengan React + Vite + Tailwind CSS.
 
-Status saat ini: **Phase 7 — Responsive + Animation + SEO selesai.**
+Status saat ini: **Phase 8 — Testing selesai. Portfolio siap dipakai.**
 
 ---
 
@@ -37,7 +37,8 @@ Untuk menghentikan server: tekan `Ctrl + C` di terminal.
 ```
 frontend/
 ├── public/            File yang disalin apa adanya. Bisa diakses langsung
-│                      lewat alamat, contoh: /favicon.svg
+│   │                  lewat alamat, contoh: /favicon.svg
+│   └── fonts/         Berkas font Inter & Space Grotesk (woff2)
 ├── src/
 │   ├── assets/        Gambar yang dipakai di dalam kode (foto profil, dll)
 │   ├── components/
@@ -77,7 +78,8 @@ Setelah didaftarkan, Tailwind otomatis membuat class-nya.
 | `--color-accent` | `#D4FF3F` | `text-accent` / `bg-accent` | Aksen lime |
 | `--color-accent-deep` | `#A8CC2A` | `bg-accent-deep` | Aksen saat hover |
 
-**Font** — hanya 2 yang diunduh dari internet supaya website tetap ringan:
+**Font** — 2 font, disimpan sendiri di `public/fonts/` (bukan dari Google Fonts).
+Alasannya ada di komentar `@font-face` dalam `src/index.css`:
 
 | Token | Font | Class | Dipakai untuk |
 |---|---|---|---|
@@ -140,6 +142,6 @@ Dokumentasi resmi v4: https://tailwindcss.com/docs
 | ~~5~~ | ~~Projects + Certificates~~ ✅ selesai |
 | ~~6~~ | ~~Contact + Footer~~ ✅ selesai |
 | ~~7~~ | ~~Responsive + Animation + SEO~~ ✅ selesai |
-| 8 | Testing — setelah ini website siap dikirim ke recruiter |
+| ~~8~~ | ~~Testing~~ ✅ selesai |
 
 Phase 9–14 (Laravel + Admin Dashboard) dikerjakan setelah Phase 1–8 selesai.
