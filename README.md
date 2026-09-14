@@ -9,7 +9,7 @@ Website portfolio pribadi untuk personal branding sebagai Full Stack Developer.
 | Folder | Isi | Status |
 |---|---|---|
 | `frontend/` | Website portfolio — React + Vite + Tailwind CSS | ✅ Selesai (Phase 8/8) |
-| `backend/` | Laravel API + Admin Dashboard | 🚧 Dikerjakan (Phase 9/14) |
+| `backend/` | Laravel API + Admin Dashboard | 🚧 Dikerjakan (Phase 10/14) |
 
 ## Cara menjalankan
 
@@ -55,7 +55,7 @@ Penjelasan lengkap: [frontend/README.md](frontend/README.md) dan
 
 **BAGIAN 2 — Laravel + Admin Dashboard**
 - [x] Phase 9 — Laravel Setup
-- [ ] Phase 10 — Database
+- [x] Phase 10 — Database
 - [ ] Phase 11 — API
 - [ ] Phase 12 — Admin Dashboard
 - [ ] Phase 13 — Hubungkan React + Laravel

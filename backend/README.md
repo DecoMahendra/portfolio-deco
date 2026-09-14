@@ -4,7 +4,7 @@ API dan admin dashboard untuk website portfolio. Dibuat dengan Laravel + MySQL.
 
 Frontend-nya ada di folder [`../frontend/`](../frontend/) — React + Vite + Tailwind CSS.
 
-Status saat ini: **Phase 9 — Laravel Setup selesai.**
+Status saat ini: **Phase 10 — Database selesai.**
 
 ---
 
@@ -38,6 +38,7 @@ Untuk menghentikan server: tekan `Ctrl + C` di terminal.
 | `php artisan migrate` | Menerapkan perubahan struktur tabel ke database |
 | `php artisan migrate:status` | Melihat migrasi mana yang sudah dijalankan |
 | `php artisan migrate:fresh` | ⚠️ Hapus semua tabel lalu buat ulang — **data hilang** |
+| `php artisan db:seed` | Mengisi tabel dengan data portfolio dari `PortfolioSeeder` |
 | `php artisan tinker` | Mencoba kode PHP langsung, berguna untuk mengecek data |
 | `php artisan route:list` | Melihat semua alamat API yang tersedia |
 
@@ -95,6 +96,32 @@ Beda dengan pesan lain:
 
 ---
 
+## Struktur database
+
+Tujuh tabel, dirancang mengikuti data yang sudah ada di `frontend/src/data/`:
+
+| Tabel | Isi | Padanan di frontend |
+|---|---|---|
+| `profiles` | Data diri — 1 baris | `profile.js` |
+| `skill_groups` | Kelompok keahlian | `skills.js` → category |
+| `skills` | Keahlian, menunjuk ke `skill_groups` | `skills.js` → items |
+| `experiences` | Riwayat pengalaman | `experience.js` |
+| `education` | Riwayat pendidikan | `education.js` |
+| `projects` | Karya — kolom `tech` berupa JSON | `projects.js` |
+| `certificates` | Pelatihan & sertifikasi | `certificates.js` |
+
+Dua hal yang perlu diketahui:
+
+- **`skills` → `skill_groups`** adalah relasi one-to-many. Kalau satu kelompok
+  dihapus, semua skill di dalamnya ikut terhapus (`cascadeOnDelete`).
+- Tabel daftar punya kolom **`sort_order`** untuk mengatur urutan tampil dari
+  dashboard nanti, tidak bergantung pada `id`.
+
+Struktur lengkapnya ada di `database/migrations/`, dan data awalnya di
+`database/seeders/PortfolioSeeder.php`.
+
+---
+
 ## Isi folder
 
 ```
@@ -123,7 +150,7 @@ backend/
 | Phase | Isi |
 |---|---|
 | ~~9~~ | ~~Laravel Setup~~ ✅ selesai |
-| 10 | Database — tabel untuk profil, skill, project, sertifikat |
+| ~~10~~ | ~~Database~~ ✅ selesai |
 | 11 | API — alamat yang dibaca frontend React |
 | 12 | Admin Dashboard — mengelola isi tanpa mengedit kode |
 | 13 | Hubungkan React + Laravel |
