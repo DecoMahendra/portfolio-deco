@@ -4,7 +4,7 @@ API dan admin dashboard untuk website portfolio. Dibuat dengan Laravel + MySQL.
 
 Frontend-nya ada di folder [`../frontend/`](../frontend/) — React + Vite + Tailwind CSS.
 
-Status saat ini: **Phase 10 — Database selesai.**
+Status saat ini: **Phase 11 — API selesai.**
 
 ---
 
@@ -122,12 +122,45 @@ Struktur lengkapnya ada di `database/migrations/`, dan data awalnya di
 
 ---
 
+## API
+
+Satu alamat untuk semua data. Website portfolio-nya satu halaman dan selalu
+butuh semua data sekaligus, jadi frontend cukup memanggil satu kali.
+
+```
+GET /api/portfolio
+```
+
+Jawabannya JSON dengan enam kunci:
+
+```json
+{
+  "profile":      { "name": "...", "role": "...", "bio": "...", ... },
+  "skills":       [ { "name": "Pengembangan Web", "skills": [ { "name": "HTML" }, ... ] }, ... ],
+  "experiences":  [ { "role": "...", "company": "...", "period": "...", "description": "..." }, ... ],
+  "education":    [ { "school": "...", "program": "...", "period": "..." }, ... ],
+  "projects":     [ { "name": "...", "tech": [ "React", ... ], "repo_url": "...", "demo_url": null }, ... ],
+  "certificates": [ { "name": "...", "organizer": "...", "year": "..." }, ... ]
+}
+```
+
+Semua daftar sudah terurut sesuai `sort_order`. Kolom bawaan seperti `id`,
+`created_at`, dan `updated_at` ikut terkirim — frontend tinggal mengabaikannya.
+
+Alamat yang tidak ada di bawah `/api/` menjawab `404` dalam bentuk JSON,
+bukan halaman HTML.
+
+Kode: `routes/api.php` (alamat) dan `app/Http/Controllers/PortfolioController.php`
+(isi jawaban).
+
+---
+
 ## Isi folder
 
 ```
 backend/
 ├── app/
-│   ├── Http/Controllers/   Menangani permintaan yang masuk
+│   ├── Http/Controllers/   Menyusun jawaban untuk tiap alamat (PortfolioController)
 │   ├── Models/             Perwakilan tabel database dalam bentuk kode
 │   └── Providers/          Pengaturan yang dijalankan saat aplikasi mulai
 ├── config/                 Berkas pengaturan (database, mail, cache, dll)
@@ -137,7 +170,7 @@ backend/
 │   └── seeders/            Pengisi data awal
 ├── public/                 Satu-satunya folder yang bisa diakses dari luar
 ├── resources/views/        Halaman HTML (Blade)
-├── routes/                 Daftar alamat: web.php dan console.php
+├── routes/                 Daftar alamat: api.php, web.php, dan console.php
 ├── storage/                Berkas unggahan, cache, dan log
 ├── .env                    Pengaturan rahasia — TIDAK masuk Git
 └── .env.example            Contoh pengaturan tanpa nilai rahasia
@@ -151,7 +184,7 @@ backend/
 |---|---|
 | ~~9~~ | ~~Laravel Setup~~ ✅ selesai |
 | ~~10~~ | ~~Database~~ ✅ selesai |
-| 11 | API — alamat yang dibaca frontend React |
+| ~~11~~ | ~~API~~ ✅ selesai |
 | 12 | Admin Dashboard — mengelola isi tanpa mengedit kode |
 | 13 | Hubungkan React + Laravel |
 | 14 | Testing |

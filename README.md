@@ -9,7 +9,7 @@ Website portfolio pribadi untuk personal branding sebagai Full Stack Developer.
 | Folder | Isi | Status |
 |---|---|---|
 | `frontend/` | Website portfolio — React + Vite + Tailwind CSS | ✅ Selesai (Phase 8/8) |
-| `backend/` | Laravel API + Admin Dashboard | 🚧 Dikerjakan (Phase 10/14) |
+| `backend/` | Laravel API + Admin Dashboard | 🚧 Dikerjakan (Phase 11/14) |
 
 ## Cara menjalankan
 
@@ -31,7 +31,7 @@ composer install
 php artisan serve
 ```
 
-Lalu buka `http://127.0.0.1:8000`.
+Lalu buka `http://127.0.0.1:8000/api/portfolio`.
 
 Penjelasan lengkap: [frontend/README.md](frontend/README.md) dan
 [backend/README.md](backend/README.md).
@@ -56,7 +56,7 @@ Penjelasan lengkap: [frontend/README.md](frontend/README.md) dan
 **BAGIAN 2 — Laravel + Admin Dashboard**
 - [x] Phase 9 — Laravel Setup
 - [x] Phase 10 — Database
-- [ ] Phase 11 — API
+- [x] Phase 11 — API
 - [ ] Phase 12 — Admin Dashboard
 - [ ] Phase 13 — Hubungkan React + Laravel
 - [ ] Phase 14 — Testing
