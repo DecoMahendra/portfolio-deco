@@ -4,7 +4,7 @@
 
 @section('content')
     <h1 class="mb-2 text-2xl font-semibold text-heading">Dashboard</h1>
-    <p class="mb-8 text-sm text-faint">Ringkasan isi website. Halaman pengelolaan tiap bagian menyusul.</p>
+    <p class="mb-8 text-sm text-faint">Ringkasan isi website.</p>
 
     <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         @foreach ($counts as $label => $count)

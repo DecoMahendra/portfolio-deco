@@ -15,9 +15,13 @@
 
     <header class="border-b border-line bg-surface">
         <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-            <a href="{{ route('admin.dashboard') }}" class="font-semibold text-heading">
-                Admin <span class="text-accent">Portfolio</span>
-            </a>
+            <nav class="flex items-center gap-6 text-sm">
+                <a href="{{ route('admin.dashboard') }}" class="font-semibold text-heading">
+                    Admin <span class="text-accent">Portfolio</span>
+                </a>
+                <a href="{{ route('admin.profile.edit') }}" class="hover:text-heading">Profil</a>
+                <a href="{{ route('admin.experiences.index') }}" class="hover:text-heading">Pengalaman</a>
+            </nav>
 
             {{-- Logout harus POST supaya tidak bisa dipicu lewat link biasa (CSRF). --}}
             <form method="POST" action="{{ route('logout') }}">

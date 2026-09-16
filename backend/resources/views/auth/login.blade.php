@@ -42,12 +42,7 @@
                 >
             </div>
 
-            <button
-                type="submit"
-                class="w-full rounded-md bg-accent px-4 py-2.5 font-semibold text-page hover:bg-accent-deep"
-            >
-                Masuk
-            </button>
+            <x-button class="w-full">Masuk</x-button>
         </form>
     </main>
 

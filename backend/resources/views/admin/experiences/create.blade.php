@@ -1,0 +1,16 @@
+@extends('layouts.admin')
+
+@section('title', 'Tambah Pengalaman')
+
+@section('content')
+    <h1 class="mb-8 text-2xl font-semibold text-heading">Tambah Pengalaman</h1>
+
+    <form method="POST" action="{{ route('admin.experiences.store') }}" class="max-w-2xl space-y-5">
+        @csrf
+        @include('admin.experiences._form', ['experience' => null])
+        <div class="flex items-center gap-5">
+            <x-button>Tambah</x-button>
+            <a href="{{ route('admin.experiences.index') }}" class="text-sm text-faint hover:text-heading">Batal</a>
+        </div>
+    </form>
+@endsection

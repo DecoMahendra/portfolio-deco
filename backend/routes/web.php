@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +25,18 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-    Route::get('/admin', DashboardController::class)->name('admin.dashboard');
+
+    /*
+      prefix('admin') : semua alamat di dalamnya diawali /admin/...
+      name('admin.')  : semua nama route diawali admin. — dipakai di route('admin.xxx')
+    */
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', DashboardController::class)->name('dashboard');
+
+        Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+
+        // except('show'): halaman detail tidak dibutuhkan, cukup daftar + form.
+        Route::resource('experiences', ExperienceController::class)->except('show');
+    });
 });
