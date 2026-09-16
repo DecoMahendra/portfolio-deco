@@ -4,7 +4,7 @@ API dan admin dashboard untuk website portfolio. Dibuat dengan Laravel + MySQL.
 
 Frontend-nya ada di folder [`../frontend/`](../frontend/) — React + Vite + Tailwind CSS.
 
-Status saat ini: **Phase 11 — API selesai.**
+Status saat ini: **Phase 12 — Admin Dashboard selesai.**
 
 ---
 
@@ -17,14 +17,24 @@ Buka XAMPP Control Panel, klik **Start** pada MySQL, tunggu sampai hijau.
 Ini wajib setiap kali mau mengerjakan backend. MySQL XAMPP tidak menyala
 otomatis saat komputer dinyalakan.
 
-**2. Jalankan servernya:**
+**2. Pasang dependensi dan buat akun admin** (cukup sekali):
 
 ```bash
-composer install     # cukup sekali, saat pertama kali
-php artisan serve    # setiap kali mau mulai mengerjakan
+composer install            # paket PHP
+npm install && npm run build   # Tailwind untuk tampilan dashboard
+php artisan admin:create    # akun untuk masuk ke dashboard
 ```
 
-Lalu buka `http://127.0.0.1:8000`.
+**3. Jalankan servernya** (setiap kali mau mulai mengerjakan):
+
+```bash
+php artisan serve
+```
+
+Lalu buka `http://127.0.0.1:8000` — otomatis diarahkan ke halaman login.
+
+Kalau sedang mengubah tampilan dashboard (file `.blade.php` atau `app.css`),
+jalankan `npm run build` lagi supaya CSS-nya ikut diperbarui.
 
 Untuk menghentikan server: tekan `Ctrl + C` di terminal.
 
@@ -40,7 +50,9 @@ Untuk menghentikan server: tekan `Ctrl + C` di terminal.
 | `php artisan migrate:fresh` | ⚠️ Hapus semua tabel lalu buat ulang — **data hilang** |
 | `php artisan db:seed` | Mengisi tabel dengan data portfolio dari `PortfolioSeeder` |
 | `php artisan tinker` | Mencoba kode PHP langsung, berguna untuk mengecek data |
-| `php artisan route:list` | Melihat semua alamat API yang tersedia |
+| `php artisan route:list` | Melihat semua alamat yang tersedia (API dan dashboard) |
+| `php artisan admin:create` | Membuat akun admin — satu-satunya cara, tidak ada halaman daftar |
+| `npm run build` | Membangun ulang CSS dashboard setelah mengubah tampilan |
 
 Semua perintah dijalankan dari dalam folder `backend/` ini.
 
@@ -155,12 +167,41 @@ Kode: `routes/api.php` (alamat) dan `app/Http/Controllers/PortfolioController.ph
 
 ---
 
+## Dashboard admin
+
+Tempat mengelola isi website tanpa mengedit kode. Alamat: `/admin`, wajib login.
+
+| Halaman | Yang bisa dilakukan |
+|---|---|
+| Profil | Ubah data diri (satu baris, tidak ada tambah/hapus) |
+| Skill | Kelompok skill dan skill di dalamnya |
+| Pengalaman, Pendidikan, Project, Sertifikat | Daftar → tambah → ubah → hapus |
+
+Beberapa hal yang perlu diketahui:
+
+- **Akun** hanya bisa dibuat lewat `php artisan admin:create`. Tidak ada halaman
+  daftar, jadi orang luar tidak bisa membuat akun sendiri.
+- **Login** dibatasi 5 percobaan per menit per alamat IP.
+- **Urutan tampil** mulai dari 1. Menyimpan di posisi yang sudah terisi akan
+  menggeser item lain ke bawah; menghapus akan merapatkan urutan — tidak pernah
+  ada dua item dengan urutan yang sama. Logikanya di `app/Models/Concerns/HasSortOrder.php`.
+- **Nama kelompok skill** tidak boleh kembar. **Nama skill** tidak boleh kembar
+  di dalam satu kelompok, tapi boleh sama di kelompok berbeda.
+- **Menghapus kelompok skill** ikut menghapus semua skill di dalamnya.
+- Tampilan memakai Tailwind lewat Vite bawaan Laravel (`resources/css/app.css`),
+  dengan warna yang sama seperti website-nya. Pesan validasi masih berbahasa
+  Inggris (bawaan Laravel).
+
+---
+
 ## Isi folder
 
 ```
 backend/
 ├── app/
-│   ├── Http/Controllers/   Menyusun jawaban untuk tiap alamat (PortfolioController)
+│   ├── Console/Commands/   Perintah artisan buatan sendiri (admin:create)
+│   ├── Http/Controllers/   Menyusun jawaban untuk tiap alamat (API dan dashboard)
+│   ├── Models/Concerns/    Trait yang dipakai bersama model (HasSortOrder)
 │   ├── Models/             Perwakilan tabel database dalam bentuk kode
 │   └── Providers/          Pengaturan yang dijalankan saat aplikasi mulai
 ├── config/                 Berkas pengaturan (database, mail, cache, dll)
@@ -169,7 +210,9 @@ backend/
 │   ├── factories/          Pembuat data contoh untuk keperluan uji
 │   └── seeders/            Pengisi data awal
 ├── public/                 Satu-satunya folder yang bisa diakses dari luar
-├── resources/views/        Halaman HTML (Blade)
+├── resources/
+│   ├── css/, js/           Sumber CSS dan JS dashboard, dibangun oleh Vite
+│   └── views/              Halaman dashboard (Blade): layouts/, auth/, admin/, components/
 ├── routes/                 Daftar alamat: api.php, web.php, dan console.php
 ├── storage/                Berkas unggahan, cache, dan log
 ├── .env                    Pengaturan rahasia — TIDAK masuk Git
@@ -185,6 +228,6 @@ backend/
 | ~~9~~ | ~~Laravel Setup~~ ✅ selesai |
 | ~~10~~ | ~~Database~~ ✅ selesai |
 | ~~11~~ | ~~API~~ ✅ selesai |
-| 12 | Admin Dashboard — mengelola isi tanpa mengedit kode |
+| ~~12~~ | ~~Admin Dashboard~~ ✅ selesai |
 | 13 | Hubungkan React + Laravel |
 | 14 | Testing |

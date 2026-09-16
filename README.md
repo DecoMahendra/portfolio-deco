@@ -9,7 +9,7 @@ Website portfolio pribadi untuk personal branding sebagai Full Stack Developer.
 | Folder | Isi | Status |
 |---|---|---|
 | `frontend/` | Website portfolio — React + Vite + Tailwind CSS | ✅ Selesai (Phase 8/8) |
-| `backend/` | Laravel API + Admin Dashboard | 🚧 Dikerjakan (Phase 11/14) |
+| `backend/` | Laravel API + Admin Dashboard | 🚧 Dikerjakan (Phase 12/14) |
 
 ## Cara menjalankan
 
@@ -23,15 +23,16 @@ npm run dev
 
 Lalu buka `http://localhost:5173`.
 
-**Backend** — API Laravel. Nyalakan MySQL lewat XAMPP Control Panel dulu:
+**Backend** — API + dashboard admin Laravel. Nyalakan MySQL lewat XAMPP Control Panel dulu:
 
 ```bash
 cd backend
-composer install
+composer install && npm install && npm run build   # cukup sekali
+php artisan admin:create                           # cukup sekali, buat akun admin
 php artisan serve
 ```
 
-Lalu buka `http://127.0.0.1:8000/api/portfolio`.
+Lalu buka `http://127.0.0.1:8000` (dashboard) atau `http://127.0.0.1:8000/api/portfolio` (API).
 
 Penjelasan lengkap: [frontend/README.md](frontend/README.md) dan
 [backend/README.md](backend/README.md).
@@ -57,6 +58,6 @@ Penjelasan lengkap: [frontend/README.md](frontend/README.md) dan
 - [x] Phase 9 — Laravel Setup
 - [x] Phase 10 — Database
 - [x] Phase 11 — API
-- [ ] Phase 12 — Admin Dashboard
+- [x] Phase 12 — Admin Dashboard
 - [ ] Phase 13 — Hubungkan React + Laravel
 - [ ] Phase 14 — Testing
