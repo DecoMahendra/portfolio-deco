@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,5 +41,8 @@ Route::middleware('auth')->group(function () {
 
         // except('show'): halaman detail tidak dibutuhkan, cukup daftar + form.
         Route::resource('experiences', ExperienceController::class)->except('show');
+        Route::resource('education', EducationController::class)->except('show');
+        Route::resource('projects', ProjectController::class)->except('show');
+        Route::resource('certificates', CertificateController::class)->except('show');
     });
 });

@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Pengalaman')
+@section('title', 'Sertifikat')
 
 @section('content')
     <div class="mb-8 flex items-center justify-between">
-        <h1 class="text-2xl font-semibold text-heading">Pengalaman</h1>
-        <a href="{{ route('admin.experiences.create') }}" class="text-sm font-semibold text-accent hover:text-accent-deep">
+        <h1 class="text-2xl font-semibold text-heading">Sertifikat</h1>
+        <a href="{{ route('admin.certificates.create') }}" class="text-sm font-semibold text-accent hover:text-accent-deep">
             + Tambah
         </a>
     </div>
@@ -16,26 +16,24 @@
             <thead class="bg-surface text-faint">
                 <tr>
                     <th class="px-4 py-3 font-medium">Urutan</th>
-                    <th class="px-4 py-3 font-medium">Peran</th>
-                    <th class="px-4 py-3 font-medium">Tempat</th>
-                    <th class="px-4 py-3 font-medium">Periode</th>
+                    <th class="px-4 py-3 font-medium">Nama</th>
+                    <th class="px-4 py-3 font-medium">Penyelenggara</th>
+                    <th class="px-4 py-3 font-medium">Tahun</th>
                     <th class="px-4 py-3 font-medium"><span class="sr-only">Aksi</span></th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-line">
-                @forelse ($experiences as $experience)
+                @forelse ($certificates as $certificate)
                     <tr>
-                        <td class="px-4 py-3">{{ $experience->sort_order }}</td>
-                        <td class="px-4 py-3 text-heading">{{ $experience->role }}</td>
-                        <td class="px-4 py-3">{{ $experience->company }}</td>
-                        <td class="px-4 py-3 whitespace-nowrap">{{ $experience->period }}</td>
+                        <td class="px-4 py-3">{{ $certificate->sort_order }}</td>
+                        <td class="px-4 py-3 text-heading">{{ $certificate->name }}</td>
+                        <td class="px-4 py-3">{{ $certificate->organizer }}</td>
+                        <td class="px-4 py-3 whitespace-nowrap">{{ $certificate->year }}</td>
                         <td class="px-4 py-3">
                             <div class="flex justify-end gap-4 whitespace-nowrap">
-                                <a href="{{ route('admin.experiences.edit', $experience) }}" class="text-accent hover:text-accent-deep">Edit</a>
-
-                                {{-- Hapus lewat form POST + DELETE, dengan konfirmasi dulu. --}}
-                                <form method="POST" action="{{ route('admin.experiences.destroy', $experience) }}"
-                                      data-confirm="Hapus pengalaman ini?">
+                                <a href="{{ route('admin.certificates.edit', $certificate) }}" class="text-accent hover:text-accent-deep">Edit</a>
+                                <form method="POST" action="{{ route('admin.certificates.destroy', $certificate) }}"
+                                      data-confirm="Hapus sertifikat ini?">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-danger hover:underline">Hapus</button>
@@ -45,7 +43,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-4 py-8 text-center text-faint">Belum ada pengalaman.</td>
+                        <td colspan="5" class="px-4 py-8 text-center text-faint">Belum ada sertifikat.</td>
                     </tr>
                 @endforelse
             </tbody>
