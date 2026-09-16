@@ -46,6 +46,7 @@
             {{-- Layar kecil: tersembunyi, dibuka lewat tombol, tersusun ke bawah. Layar >= md: selalu tampil sejajar. --}}
             <nav id="menu" class="mt-4 hidden flex-col gap-1 text-sm md:mt-3 md:flex md:flex-row md:gap-5">
                 <a href="{{ route('admin.profile.edit') }}" class="py-2 hover:text-heading md:py-0">Profil</a>
+                <a href="{{ route('admin.skill-groups.index') }}" class="py-2 hover:text-heading md:py-0">Skill</a>
                 <a href="{{ route('admin.experiences.index') }}" class="py-2 hover:text-heading md:py-0">Pengalaman</a>
                 <a href="{{ route('admin.education.index') }}" class="py-2 hover:text-heading md:py-0">Pendidikan</a>
                 <a href="{{ route('admin.projects.index') }}" class="py-2 hover:text-heading md:py-0">Project</a>

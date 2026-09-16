@@ -19,12 +19,13 @@ class ProjectController extends Controller
 
     public function create(): View
     {
-        return view('admin.projects.create');
+        // Posisi bawaan untuk data baru: paling akhir.
+        return view('admin.projects.create', ['nextPosition' => Project::count() + 1]);
     }
 
     public function store(Request $request): RedirectResponse
     {
-        Project::create($this->validated($request));
+        Project::createAtPosition($this->validated($request));
 
         return redirect()->route('admin.projects.index')->with('status', 'Project ditambahkan.');
     }
@@ -36,14 +37,14 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project): RedirectResponse
     {
-        $project->update($this->validated($request));
+        $project->updateAtPosition($this->validated($request));
 
         return redirect()->route('admin.projects.index')->with('status', 'Project disimpan.');
     }
 
     public function destroy(Project $project): RedirectResponse
     {
-        $project->delete();
+        $project->deleteAndCloseGap();
 
         return redirect()->route('admin.projects.index')->with('status', 'Project dihapus.');
     }
@@ -57,7 +58,8 @@ class ProjectController extends Controller
             // nullable: boleh kosong. Kalau diisi, harus URL yang valid.
             'repo_url' => ['nullable', 'url', 'max:255'],
             'demo_url' => ['nullable', 'url', 'max:255'],
-            'sort_order' => ['required', 'integer', 'min:0', 'max:65535'],
+            // position (mulai dari 1) diterjemahkan ke sort_order oleh trait HasSortOrder.
+            'position' => ['required', 'integer', 'min:1'],
         ]);
 
         /*

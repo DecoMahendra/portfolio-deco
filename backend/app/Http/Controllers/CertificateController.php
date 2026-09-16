@@ -19,12 +19,13 @@ class CertificateController extends Controller
 
     public function create(): View
     {
-        return view('admin.certificates.create');
+        // Posisi bawaan untuk data baru: paling akhir.
+        return view('admin.certificates.create', ['nextPosition' => Certificate::count() + 1]);
     }
 
     public function store(Request $request): RedirectResponse
     {
-        Certificate::create($this->validated($request));
+        Certificate::createAtPosition($this->validated($request));
 
         return redirect()->route('admin.certificates.index')->with('status', 'Sertifikat ditambahkan.');
     }
@@ -36,14 +37,14 @@ class CertificateController extends Controller
 
     public function update(Request $request, Certificate $certificate): RedirectResponse
     {
-        $certificate->update($this->validated($request));
+        $certificate->updateAtPosition($this->validated($request));
 
         return redirect()->route('admin.certificates.index')->with('status', 'Sertifikat disimpan.');
     }
 
     public function destroy(Certificate $certificate): RedirectResponse
     {
-        $certificate->delete();
+        $certificate->deleteAndCloseGap();
 
         return redirect()->route('admin.certificates.index')->with('status', 'Sertifikat dihapus.');
     }
@@ -54,7 +55,8 @@ class CertificateController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'organizer' => ['required', 'string', 'max:255'],
             'year' => ['required', 'string', 'max:255'],
-            'sort_order' => ['required', 'integer', 'min:0', 'max:65535'],
+            // position (mulai dari 1) diterjemahkan ke sort_order oleh trait HasSortOrder.
+            'position' => ['required', 'integer', 'min:1'],
         ]);
     }
 }

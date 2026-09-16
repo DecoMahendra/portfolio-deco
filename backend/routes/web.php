@@ -7,6 +7,8 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SkillController;
+use App\Http\Controllers\SkillGroupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,5 +46,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('education', EducationController::class)->except('show');
         Route::resource('projects', ProjectController::class)->except('show');
         Route::resource('certificates', CertificateController::class)->except('show');
+
+        // Skill: daftarnya ada di halaman kelompok, jadi skills tidak punya index.
+        Route::resource('skill-groups', SkillGroupController::class)->except('show');
+        Route::resource('skills', SkillController::class)->except(['index', 'show']);
     });
 });

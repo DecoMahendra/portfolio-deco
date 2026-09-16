@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasSortOrder;
 use Illuminate\Database\Eloquent\Model;
 
 class Education extends Model
 {
+    use HasSortOrder;
+
     /*
       Laravel biasanya menebak nama tabel dari nama model: Education -> educations.
       Tapi kata "education" tidak punya bentuk jamak, dan migration-nya

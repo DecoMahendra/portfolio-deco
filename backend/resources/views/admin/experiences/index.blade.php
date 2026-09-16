@@ -25,7 +25,7 @@
             <tbody class="divide-y divide-line">
                 @forelse ($experiences as $experience)
                     <tr>
-                        <td class="px-4 py-3">{{ $experience->sort_order }}</td>
+                        <td class="px-4 py-3">{{ $experience->sort_order + 1 }}</td>
                         <td class="px-4 py-3 text-heading">{{ $experience->role }}</td>
                         <td class="px-4 py-3">{{ $experience->company }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">{{ $experience->period }}</td>

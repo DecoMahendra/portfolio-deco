@@ -25,7 +25,7 @@
             <tbody class="divide-y divide-line">
                 @forelse ($certificates as $certificate)
                     <tr>
-                        <td class="px-4 py-3">{{ $certificate->sort_order }}</td>
+                        <td class="px-4 py-3">{{ $certificate->sort_order + 1 }}</td>
                         <td class="px-4 py-3 text-heading">{{ $certificate->name }}</td>
                         <td class="px-4 py-3">{{ $certificate->organizer }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">{{ $certificate->year }}</td>

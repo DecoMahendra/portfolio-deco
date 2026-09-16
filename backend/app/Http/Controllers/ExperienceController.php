@@ -33,12 +33,13 @@ class ExperienceController extends Controller
 
     public function create(): View
     {
-        return view('admin.experiences.create');
+        // Posisi bawaan untuk data baru: paling akhir.
+        return view('admin.experiences.create', ['nextPosition' => Experience::count() + 1]);
     }
 
     public function store(Request $request): RedirectResponse
     {
-        Experience::create($this->validated($request));
+        Experience::createAtPosition($this->validated($request));
 
         return redirect()->route('admin.experiences.index')->with('status', 'Pengalaman ditambahkan.');
     }
@@ -50,14 +51,14 @@ class ExperienceController extends Controller
 
     public function update(Request $request, Experience $experience): RedirectResponse
     {
-        $experience->update($this->validated($request));
+        $experience->updateAtPosition($this->validated($request));
 
         return redirect()->route('admin.experiences.index')->with('status', 'Pengalaman disimpan.');
     }
 
     public function destroy(Experience $experience): RedirectResponse
     {
-        $experience->delete();
+        $experience->deleteAndCloseGap();
 
         return redirect()->route('admin.experiences.index')->with('status', 'Pengalaman dihapus.');
     }
@@ -70,7 +71,8 @@ class ExperienceController extends Controller
             'company' => ['required', 'string', 'max:255'],
             'period' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'sort_order' => ['required', 'integer', 'min:0', 'max:65535'],
+            // position (mulai dari 1) diterjemahkan ke sort_order oleh trait HasSortOrder.
+            'position' => ['required', 'integer', 'min:1'],
         ]);
     }
 }

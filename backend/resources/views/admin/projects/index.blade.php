@@ -25,7 +25,7 @@
             <tbody class="divide-y divide-line">
                 @forelse ($projects as $project)
                     <tr>
-                        <td class="px-4 py-3">{{ $project->sort_order }}</td>
+                        <td class="px-4 py-3">{{ $project->sort_order + 1 }}</td>
                         <td class="px-4 py-3 text-heading">{{ $project->name }}</td>
                         <td class="px-4 py-3">{{ implode(', ', $project->tech) }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">

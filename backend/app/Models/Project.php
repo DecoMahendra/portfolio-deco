@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasSortOrder;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use HasSortOrder;
+
     protected $fillable = ['name', 'description', 'tech', 'repo_url', 'demo_url', 'sort_order'];
 
     /*

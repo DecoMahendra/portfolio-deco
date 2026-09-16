@@ -4,4 +4,5 @@
 <x-field name="tech" label="Teknologi (pisahkan dengan koma)" :value="implode(', ', $project?->tech ?? [])" placeholder="React, Vite, Tailwind CSS" required />
 <x-field name="repo_url" label="URL repository (boleh kosong)" type="url" :value="$project?->repo_url" placeholder="https://github.com/..." />
 <x-field name="demo_url" label="URL demo (boleh kosong)" type="url" :value="$project?->demo_url" placeholder="https://..." />
-<x-field name="sort_order" label="Urutan tampil (0 = paling atas)" type="number" :value="$project?->sort_order ?? 0" min="0" required />
+{{-- Posisi mulai dari 1 (di database sort_order mulai dari 0, konversinya di trait HasSortOrder). --}}
+<x-field name="position" label="Urutan tampil (1 = paling atas)" type="number" :value="$project ? $project->sort_order + 1 : $nextPosition" min="1" required />

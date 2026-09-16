@@ -19,12 +19,13 @@ class EducationController extends Controller
 
     public function create(): View
     {
-        return view('admin.education.create');
+        // Posisi bawaan untuk data baru: paling akhir.
+        return view('admin.education.create', ['nextPosition' => Education::count() + 1]);
     }
 
     public function store(Request $request): RedirectResponse
     {
-        Education::create($this->validated($request));
+        Education::createAtPosition($this->validated($request));
 
         return redirect()->route('admin.education.index')->with('status', 'Pendidikan ditambahkan.');
     }
@@ -36,14 +37,14 @@ class EducationController extends Controller
 
     public function update(Request $request, Education $education): RedirectResponse
     {
-        $education->update($this->validated($request));
+        $education->updateAtPosition($this->validated($request));
 
         return redirect()->route('admin.education.index')->with('status', 'Pendidikan disimpan.');
     }
 
     public function destroy(Education $education): RedirectResponse
     {
-        $education->delete();
+        $education->deleteAndCloseGap();
 
         return redirect()->route('admin.education.index')->with('status', 'Pendidikan dihapus.');
     }
@@ -54,7 +55,8 @@ class EducationController extends Controller
             'school' => ['required', 'string', 'max:255'],
             'program' => ['required', 'string', 'max:255'],
             'period' => ['required', 'string', 'max:255'],
-            'sort_order' => ['required', 'integer', 'min:0', 'max:65535'],
+            // position (mulai dari 1) diterjemahkan ke sort_order oleh trait HasSortOrder.
+            'position' => ['required', 'integer', 'min:1'],
         ]);
     }
 }

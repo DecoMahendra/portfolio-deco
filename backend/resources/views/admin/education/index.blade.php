@@ -25,7 +25,7 @@
             <tbody class="divide-y divide-line">
                 @forelse ($education as $item)
                     <tr>
-                        <td class="px-4 py-3">{{ $item->sort_order }}</td>
+                        <td class="px-4 py-3">{{ $item->sort_order + 1 }}</td>
                         <td class="px-4 py-3 text-heading">{{ $item->school }}</td>
                         <td class="px-4 py-3">{{ $item->program }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">{{ $item->period }}</td>
