@@ -1,4 +1,5 @@
 <x-field name="name" label="Nama project" :value="$project?->name" required />
+<x-field name="slug" label="Alamat (slug) — kosongkan untuk dibuat otomatis dari nama" :value="$project?->slug" placeholder="website-portfolio-pribadi" />
 <x-field name="description" label="Deskripsi" :value="$project?->description" rows="5" required />
 {{-- tech di database berupa array; di form ditampilkan sebagai teks dipisah koma. --}}
 <x-field name="tech" label="Teknologi (pisahkan dengan koma)" :value="implode(', ', $project?->tech ?? [])" placeholder="React, Vite, Tailwind CSS" required />

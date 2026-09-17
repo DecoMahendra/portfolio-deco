@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 // Pola yang sama dengan ExperienceController, ditambah pengolahan kolom tech.
@@ -37,7 +39,7 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project): RedirectResponse
     {
-        $project->updateAtPosition($this->validated($request));
+        $project->updateAtPosition($this->validated($request, $project));
 
         return redirect()->route('admin.projects.index')->with('status', 'Project disimpan.');
     }
@@ -49,10 +51,18 @@ class ProjectController extends Controller
         return redirect()->route('admin.projects.index')->with('status', 'Project dihapus.');
     }
 
-    private function validated(Request $request): array
+    private function validated(Request $request, ?Project $current = null): array
     {
+        /*
+          Slug = nama versi alamat web, dipakai frontend untuk /projects/{slug}.
+          Boleh dikosongkan di form: dibuat otomatis dari nama. Kalau diisi,
+          tetap dirapikan (huruf kecil, spasi jadi tanda hubung) sebelum divalidasi.
+        */
+        $request->merge(['slug' => Str::slug($request->input('slug') ?: $request->input('name'))]);
+
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'slug' => ['required', 'string', 'max:255', Rule::unique('projects', 'slug')->ignore($current)],
             'description' => ['required', 'string'],
             'tech' => ['required', 'string'],
             // nullable: boleh kosong. Kalau diisi, harus URL yang valid.

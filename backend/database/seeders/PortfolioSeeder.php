@@ -139,6 +139,7 @@ class PortfolioSeeder extends Seeder
 
         Project::create([
             'name' => 'Website Portfolio Pribadi',
+            'slug' => 'website-portfolio-pribadi',
             'description' => 'Website portfolio satu halaman yang dibangun dari nol tanpa template. Memiliki design system sendiri, navigasi yang otomatis menandai bagian yang sedang dibaca, serta dukungan navigasi keyboard dan pembaca layar. Backend Laravel dan dashboard admin sedang dalam rencana pengembangan.',
             'tech' => ['React', 'Vite', 'Tailwind CSS', 'JavaScript'],
             'repo_url' => 'https://github.com/DecoMahendra/portfolio-deco',

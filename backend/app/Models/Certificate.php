@@ -9,5 +9,5 @@ class Certificate extends Model
 {
     use HasSortOrder;
 
-    protected $fillable = ['name', 'organizer', 'year', 'sort_order'];
+    protected $fillable = ['name', 'organizer', 'year', 'image_url', 'image_public_id', 'sort_order'];
 }

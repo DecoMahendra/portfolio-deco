@@ -4,12 +4,13 @@ namespace App\Models;
 
 use App\Models\Concerns\HasSortOrder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
     use HasSortOrder;
 
-    protected $fillable = ['name', 'description', 'tech', 'repo_url', 'demo_url', 'sort_order'];
+    protected $fillable = ['name', 'slug', 'description', 'tech', 'repo_url', 'demo_url', 'sort_order'];
 
     /*
       $casts = cara Laravel mengubah tipe data saat baca/tulis.
@@ -24,4 +25,13 @@ class Project extends Model
     protected $casts = [
         'tech' => 'array',
     ];
+
+    /*
+      Satu project PUNYA BANYAK gambar (slide), diurutkan sesuai sort_order.
+      Cara pakai: $project->images  ->  daftar gambar project ini.
+    */
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProjectImage::class)->orderBy('sort_order');
+    }
 }

@@ -31,7 +31,7 @@ class PortfolioController extends Controller
 
             'experiences' => Experience::orderBy('sort_order')->get(),
             'education' => Education::orderBy('sort_order')->get(),
-            'projects' => Project::orderBy('sort_order')->get(),
+            'projects' => Project::with('images')->orderBy('sort_order')->get(),
             'certificates' => Certificate::orderBy('sort_order')->get(),
         ]);
     }
