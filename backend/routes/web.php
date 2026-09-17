@@ -7,6 +7,7 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectImageController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SkillGroupController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('experiences', ExperienceController::class)->except('show');
         Route::resource('education', EducationController::class)->except('show');
         Route::resource('projects', ProjectController::class)->except('show');
+
+        // Gambar project: tambah/ubah ikut form project; hapus lewat alamat sendiri.
+        Route::delete('project-images/{projectImage}', [ProjectImageController::class, 'destroy'])->name('project-images.destroy');
         Route::resource('certificates', CertificateController::class)->except('show');
 
         // Skill: daftarnya ada di halaman kelompok, jadi skills tidak punya index.

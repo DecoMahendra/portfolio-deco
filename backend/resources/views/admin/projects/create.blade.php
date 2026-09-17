@@ -5,7 +5,7 @@
 @section('content')
     <h1 class="mb-8 text-2xl font-semibold text-heading">Tambah Project</h1>
 
-    <form method="POST" action="{{ route('admin.projects.store') }}" class="max-w-2xl space-y-5">
+    <form method="POST" action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" class="max-w-2xl space-y-5">
         @csrf
         @include('admin.projects._form', ['project' => null])
         <div class="flex items-center gap-5">

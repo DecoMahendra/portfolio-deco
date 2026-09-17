@@ -6,19 +6,22 @@
   old($name, $value): kalau form ditolak validasi, isi yang tadi diketik
   dikembalikan supaya tidak hilang; kalau tidak, pakai nilai dari database.
 --}}
-@props(['name', 'label', 'value' => '', 'type' => 'text', 'rows' => null])
+@props(['name', 'label', 'value' => '', 'type' => 'text', 'rows' => null, 'id' => null])
+
+{{-- id bawaan = name. Diganti kalau field yang sama muncul berulang di satu halaman (id harus unik). --}}
+@php($id ??= $name)
 
 <div>
-    <label for="{{ $name }}" class="mb-1.5 block text-sm">{{ $label }}</label>
+    <label for="{{ $id }}" class="mb-1.5 block text-sm">{{ $label }}</label>
 
     @if ($rows)
         <textarea
-            id="{{ $name }}" name="{{ $name }}" rows="{{ $rows }}"
+            id="{{ $id }}" name="{{ $name }}" rows="{{ $rows }}"
             {{ $attributes->merge(['class' => 'w-full rounded-md border border-line bg-surface px-3 py-2 text-heading']) }}
         >{{ old($name, $value) }}</textarea>
     @else
         <input
-            type="{{ $type }}" id="{{ $name }}" name="{{ $name }}" value="{{ old($name, $value) }}"
+            type="{{ $type }}" id="{{ $id }}" name="{{ $name }}" value="{{ old($name, $value) }}"
             {{ $attributes->merge(['class' => 'w-full rounded-md border border-line bg-surface px-3 py-2 text-heading']) }}
         >
     @endif

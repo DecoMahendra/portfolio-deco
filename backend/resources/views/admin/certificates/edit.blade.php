@@ -5,7 +5,7 @@
 @section('content')
     <h1 class="mb-8 text-2xl font-semibold text-heading">Ubah Sertifikat</h1>
 
-    <form method="POST" action="{{ route('admin.certificates.update', $certificate) }}" class="max-w-2xl space-y-5">
+    <form method="POST" action="{{ route('admin.certificates.update', $certificate) }}" enctype="multipart/form-data" class="max-w-2xl space-y-5">
         @csrf
         @method('PUT')
         @include('admin.certificates._form')
