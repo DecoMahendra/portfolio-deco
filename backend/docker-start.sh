@@ -4,9 +4,18 @@
 set -e
 
 # Sertifikat koneksi database tidak ikut masuk ke dalam paket (berkas rahasia).
-# Di server, isinya dikirim lewat environment variable DB_SSL_CA, lalu ditulis
-# jadi berkas di sini. export: supaya terbaca oleh perintah php di bawahnya.
-if [ -n "$DB_SSL_CA" ]; then
+# Di server, isinya dikirim lewat environment variable lalu ditulis jadi berkas.
+#
+# Ada dua bentuk karena sebagian layanan hosting hanya menerima nilai satu baris,
+# sedangkan sertifikat aslinya beberapa baris:
+#   DB_SSL_CA_B64 : sertifikat dalam bentuk base64 (satu baris) — dipakai duluan
+#   DB_SSL_CA     : sertifikat apa adanya (beberapa baris)
+# export: supaya terbaca oleh perintah php di bawahnya.
+if [ -n "$DB_SSL_CA_B64" ]; then
+    mkdir -p storage/certs
+    echo "$DB_SSL_CA_B64" | base64 -d > storage/certs/ca.pem
+    export MYSQL_ATTR_SSL_CA=storage/certs/ca.pem
+elif [ -n "$DB_SSL_CA" ]; then
     mkdir -p storage/certs
     printf '%s' "$DB_SSL_CA" > storage/certs/ca.pem
     export MYSQL_ATTR_SSL_CA=storage/certs/ca.pem
