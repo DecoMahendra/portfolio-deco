@@ -50,7 +50,14 @@ COPY --from=assets /app/public/build ./public/build
 
 # Autoload Composer perlu dibuat ulang setelah kode disalin (tadi --no-scripts).
 COPY --from=vendor /usr/bin/composer /usr/bin/composer
-RUN composer dump-autoload --no-dev --optimize \
+
+# Folder kerja Laravel dibuat eksplisit: isinya dibuang oleh .dockerignore, dan
+# sebagian pembangun Docker (misalnya kaniko yang dipakai Back4app) tidak ikut
+# membuat folder kosong. Tanpa ini "php artisan view:cache" gagal dengan
+# "View path not found" — dan itu baru ketahuan di server, bukan di komputer sendiri.
+RUN mkdir -p storage/framework/views storage/framework/cache/data \
+        storage/framework/sessions storage/logs bootstrap/cache \
+    && composer dump-autoload --no-dev --optimize \
     && chmod -R ug+w storage bootstrap/cache \
     && chmod +x docker-start.sh
 
