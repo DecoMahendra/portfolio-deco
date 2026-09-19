@@ -1,0 +1,4 @@
+# Sertifikat koneksi database (ca.pem) tidak boleh masuk Git.
+# Folder ini tetap ada di repo, isinya tidak.
+*
+!.gitignore

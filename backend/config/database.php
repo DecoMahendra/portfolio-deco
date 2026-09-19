@@ -60,7 +60,13 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                /*
+                  Sertifikat untuk koneksi SSL ke database online (Aiven).
+                  base_path(): letaknya dihitung dari folder backend/. Tanpa ini,
+                  path relatif meleset saat permintaan web — server Laravel
+                  menjalankan kode dari folder public/, bukan dari backend/.
+                */
+                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA') ? base_path(env('MYSQL_ATTR_SSL_CA')) : null,
             ]) : [],
         ],
 
@@ -80,7 +86,13 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                /*
+                  Sertifikat untuk koneksi SSL ke database online (Aiven).
+                  base_path(): letaknya dihitung dari folder backend/. Tanpa ini,
+                  path relatif meleset saat permintaan web — server Laravel
+                  menjalankan kode dari folder public/, bukan dari backend/.
+                */
+                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA') ? base_path(env('MYSQL_ATTR_SSL_CA')) : null,
             ]) : [],
         ],
 

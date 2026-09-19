@@ -3,6 +3,15 @@
 # set -e: kalau ada perintah yang gagal, berhenti — jangan diam-diam lanjut.
 set -e
 
+# Sertifikat koneksi database tidak ikut masuk ke dalam paket (berkas rahasia).
+# Di server, isinya dikirim lewat environment variable DB_SSL_CA, lalu ditulis
+# jadi berkas di sini. export: supaya terbaca oleh perintah php di bawahnya.
+if [ -n "$DB_SSL_CA" ]; then
+    mkdir -p storage/certs
+    printf '%s' "$DB_SSL_CA" > storage/certs/ca.pem
+    export MYSQL_ATTR_SSL_CA=storage/certs/ca.pem
+fi
+
 # Menerapkan perubahan struktur tabel ke database online.
 # --force: jalan tanpa bertanya, karena di server tidak ada yang bisa menjawab.
 php artisan migrate --force
