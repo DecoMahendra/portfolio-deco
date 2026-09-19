@@ -1,0 +1,23 @@
+# Berkas yang TIDAK ikut masuk ke dalam paket Docker.
+# Alasannya: rahasia, berat, atau dibuat ulang saat membangun.
+
+.env
+.env.*
+!.env.example
+
+vendor/
+node_modules/
+public/build/
+public/hot
+
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+
+.git/
+.gitignore
+.gitattributes
+README.md
+tests/
+.phpunit.result.cache
