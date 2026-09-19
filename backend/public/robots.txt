@@ -1,2 +1,4 @@
+# Backend API dan dashboard admin — tidak untuk mesin pencari.
+# Website publiknya ada di https://decomahendra.vercel.app
 User-agent: *
-Disallow:
+Disallow: /
