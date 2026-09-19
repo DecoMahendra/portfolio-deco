@@ -1,4 +1,8 @@
-# Sertifikat koneksi database (ca.pem) tidak boleh masuk Git.
-# Folder ini tetap ada di repo, isinya tidak.
+# Sertifikat CA Aiven (ca.pem) SENGAJA ikut masuk Git.
+# Sertifikat bukan rahasia — isinya hanya identitas server database, dipakai
+# untuk memverifikasi bahwa kita benar-benar terhubung ke server Aiven.
+# Yang rahasia adalah kunci privat, dan itu ada di sisi Aiven, bukan di sini.
+# Berkas lain di folder ini tetap diabaikan.
 *
 !.gitignore
+!ca.pem
