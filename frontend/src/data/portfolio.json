@@ -1,0 +1,397 @@
+{
+    "profile": {
+        "id": 1,
+        "name": "Deco Mahendra",
+        "role": "Full Stack Developer",
+        "location": "Indramayu, Jawa Barat",
+        "availability": "Terbuka untuk project freelance",
+        "tagline": "Full Stack Developer yang membangun website modern, responsif, dan berorientasi pada pengalaman pengguna.",
+        "bio": "Mahasiswa D4 Sistem Informasi Kota Cerdas di Politeknik Negeri Indramayu, dengan ketertarikan dalam membangun aplikasi web modern dari sisi frontend hingga backend.\n\nSaya senang mempelajari teknologi baru, menyelesaikan masalah melalui kode, dan mengembangkan project yang memiliki tampilan menarik serta fungsional.",
+        "photo_alt": "Foto Deco Mahendra",
+        "created_at": "2026-09-19T14:29:43.000000Z",
+        "updated_at": "2026-09-19T14:29:43.000000Z"
+    },
+    "skills": [
+        {
+            "id": 1,
+            "name": "Pengembangan Web",
+            "sort_order": 0,
+            "created_at": "2026-09-19T14:29:44.000000Z",
+            "updated_at": "2026-09-19T14:29:44.000000Z",
+            "skills": [
+                {
+                    "id": 1,
+                    "skill_group_id": 1,
+                    "name": "HTML",
+                    "sort_order": 0,
+                    "created_at": "2026-09-19T14:29:45.000000Z",
+                    "updated_at": "2026-09-19T14:29:45.000000Z"
+                },
+                {
+                    "id": 2,
+                    "skill_group_id": 1,
+                    "name": "CSS",
+                    "sort_order": 1,
+                    "created_at": "2026-09-19T14:29:45.000000Z",
+                    "updated_at": "2026-09-19T14:29:45.000000Z"
+                },
+                {
+                    "id": 3,
+                    "skill_group_id": 1,
+                    "name": "JavaScript",
+                    "sort_order": 2,
+                    "created_at": "2026-09-19T14:29:45.000000Z",
+                    "updated_at": "2026-09-19T14:29:45.000000Z"
+                },
+                {
+                    "id": 4,
+                    "skill_group_id": 1,
+                    "name": "React",
+                    "sort_order": 3,
+                    "created_at": "2026-09-19T14:29:46.000000Z",
+                    "updated_at": "2026-09-19T14:29:46.000000Z"
+                },
+                {
+                    "id": 5,
+                    "skill_group_id": 1,
+                    "name": "Laravel",
+                    "sort_order": 4,
+                    "created_at": "2026-09-19T14:29:46.000000Z",
+                    "updated_at": "2026-09-19T14:29:46.000000Z"
+                },
+                {
+                    "id": 6,
+                    "skill_group_id": 1,
+                    "name": "Tailwind CSS",
+                    "sort_order": 5,
+                    "created_at": "2026-09-19T14:29:46.000000Z",
+                    "updated_at": "2026-09-19T14:29:46.000000Z"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Bahasa Pemrograman",
+            "sort_order": 1,
+            "created_at": "2026-09-19T14:29:47.000000Z",
+            "updated_at": "2026-09-19T14:29:47.000000Z",
+            "skills": [
+                {
+                    "id": 7,
+                    "skill_group_id": 2,
+                    "name": "PHP",
+                    "sort_order": 0,
+                    "created_at": "2026-09-19T14:29:48.000000Z",
+                    "updated_at": "2026-09-19T14:29:48.000000Z"
+                },
+                {
+                    "id": 8,
+                    "skill_group_id": 2,
+                    "name": "Java",
+                    "sort_order": 1,
+                    "created_at": "2026-09-19T14:29:48.000000Z",
+                    "updated_at": "2026-09-19T14:29:48.000000Z"
+                },
+                {
+                    "id": 9,
+                    "skill_group_id": 2,
+                    "name": "Python",
+                    "sort_order": 2,
+                    "created_at": "2026-09-19T14:29:48.000000Z",
+                    "updated_at": "2026-09-19T14:29:48.000000Z"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Basis Data & Pengolahan Data",
+            "sort_order": 2,
+            "created_at": "2026-09-19T14:29:49.000000Z",
+            "updated_at": "2026-09-19T14:29:49.000000Z",
+            "skills": [
+                {
+                    "id": 10,
+                    "skill_group_id": 3,
+                    "name": "MySQL",
+                    "sort_order": 0,
+                    "created_at": "2026-09-19T14:29:49.000000Z",
+                    "updated_at": "2026-09-19T14:29:49.000000Z"
+                },
+                {
+                    "id": 11,
+                    "skill_group_id": 3,
+                    "name": "Pandas",
+                    "sort_order": 1,
+                    "created_at": "2026-09-19T14:29:49.000000Z",
+                    "updated_at": "2026-09-19T14:29:49.000000Z"
+                },
+                {
+                    "id": 12,
+                    "skill_group_id": 3,
+                    "name": "NumPy",
+                    "sort_order": 2,
+                    "created_at": "2026-09-19T14:29:49.000000Z",
+                    "updated_at": "2026-09-19T14:29:49.000000Z"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Mobile & IoT",
+            "sort_order": 3,
+            "created_at": "2026-09-19T14:29:49.000000Z",
+            "updated_at": "2026-09-19T14:29:49.000000Z",
+            "skills": [
+                {
+                    "id": 13,
+                    "skill_group_id": 4,
+                    "name": "Flutter",
+                    "sort_order": 0,
+                    "created_at": "2026-09-19T14:29:50.000000Z",
+                    "updated_at": "2026-09-19T14:29:50.000000Z"
+                },
+                {
+                    "id": 14,
+                    "skill_group_id": 4,
+                    "name": "Internet of Things",
+                    "sort_order": 1,
+                    "created_at": "2026-09-19T14:29:50.000000Z",
+                    "updated_at": "2026-09-19T14:29:50.000000Z"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Tools",
+            "sort_order": 4,
+            "created_at": "2026-09-19T14:29:51.000000Z",
+            "updated_at": "2026-09-19T14:29:51.000000Z",
+            "skills": [
+                {
+                    "id": 15,
+                    "skill_group_id": 5,
+                    "name": "Git",
+                    "sort_order": 0,
+                    "created_at": "2026-09-19T14:29:52.000000Z",
+                    "updated_at": "2026-09-19T14:29:52.000000Z"
+                },
+                {
+                    "id": 16,
+                    "skill_group_id": 5,
+                    "name": "GitHub",
+                    "sort_order": 1,
+                    "created_at": "2026-09-19T14:29:52.000000Z",
+                    "updated_at": "2026-09-19T14:29:52.000000Z"
+                },
+                {
+                    "id": 17,
+                    "skill_group_id": 5,
+                    "name": "Vite",
+                    "sort_order": 2,
+                    "created_at": "2026-09-19T14:29:52.000000Z",
+                    "updated_at": "2026-09-19T14:29:52.000000Z"
+                }
+            ]
+        }
+    ],
+    "experiences": [
+        {
+            "id": 1,
+            "role": "Full Stack Developer Intern",
+            "company": "PT. Pilar Timur Teknologi (Digital Oasis)",
+            "period": "Juli 2026 — Sekarang",
+            "description": "Berkontribusi dalam pengembangan project TelU-X pada sisi Admin, Client, dan integrasi Moodle. Menganalisis temuan bug berdasarkan dokumentasi UAT, melakukan perbaikan, serta memastikan fitur kembali berjalan sesuai kebutuhan sistem.",
+            "sort_order": 0,
+            "created_at": "2026-09-19T14:29:52.000000Z",
+            "updated_at": "2026-09-19T14:29:52.000000Z"
+        },
+        {
+            "id": 2,
+            "role": "Koordinator Dewan Permusyawaratan Mahasiswa",
+            "company": "Himpunan Mahasiswa Sistem Informasi Kota Cerdas (HIMA-SIKC)",
+            "period": "2025 — 2026",
+            "description": "Memimpin dan mengoordinasikan pengawasan terhadap jalannya kepengurusan HIMA-SIKC bersama anggota bidang, serta memberikan bimbingan dan masukan atas pengelolaan organisasi. Mewakili DPM dalam berkoordinasi dengan Ketua Himpunan di setiap kegiatan, turut terlibat langsung dalam pelaksanaan pengawasan di lapangan, dan mempertanggungjawabkan hasilnya pada Musyawarah Besar.",
+            "sort_order": 1,
+            "created_at": "2026-09-19T14:29:52.000000Z",
+            "updated_at": "2026-09-19T14:29:52.000000Z"
+        },
+        {
+            "id": 3,
+            "role": "Ketua Himpunan",
+            "company": "Himpunan Mahasiswa Sistem Informasi Kota Cerdas (HIMA-SIKC)",
+            "period": "2024 — 2025",
+            "description": "Memimpin dan bertanggung jawab atas jalannya kepengurusan HIMA-SIKC selama satu periode, mencakup koordinasi program kerja, rapat pengurus, dan evaluasi triwulan. Merumuskan SOP organisasi serta job description tiap divisi bersama pengurus harian, dan berkoordinasi dengan Pembina dan DPM di setiap pelaksanaan kegiatan.",
+            "sort_order": 2,
+            "created_at": "2026-09-19T14:29:53.000000Z",
+            "updated_at": "2026-09-19T14:29:53.000000Z"
+        },
+        {
+            "id": 4,
+            "role": "Praktik Kerja Lapangan",
+            "company": "Percetakan Fdot Indramayu",
+            "period": "Februari — April 2022",
+            "description": "Mendesain surat, banner, dan spanduk menggunakan CorelDRAW dan Photoshop, serta berkontribusi dalam pembuatan piala akrilik dan piagam.",
+            "sort_order": 3,
+            "created_at": "2026-09-19T14:29:53.000000Z",
+            "updated_at": "2026-09-19T14:29:53.000000Z"
+        }
+    ],
+    "education": [
+        {
+            "id": 1,
+            "school": "Politeknik Negeri Indramayu",
+            "program": "D4 Sistem Informasi Kota Cerdas",
+            "period": "2023 — Sekarang",
+            "sort_order": 0,
+            "created_at": "2026-09-19T14:29:53.000000Z",
+            "updated_at": "2026-09-19T14:29:53.000000Z"
+        },
+        {
+            "id": 2,
+            "school": "SMK Negeri Indramayu",
+            "program": "Multimedia",
+            "period": "2019 — 2022",
+            "sort_order": 1,
+            "created_at": "2026-09-19T14:29:53.000000Z",
+            "updated_at": "2026-09-19T14:29:53.000000Z"
+        }
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "name": "Website Portfolio Pribadi",
+            "slug": "website-portfolio-pribadi",
+            "description": "Website portfolio satu halaman yang dibangun dari nol tanpa template. Memiliki design system sendiri, navigasi yang otomatis menandai bagian yang sedang dibaca, serta dukungan navigasi keyboard dan pembaca layar. Backend Laravel dan dashboard admin sedang dalam rencana pengembangan.",
+            "tech": [
+                "React",
+                "Vite",
+                "Tailwind CSS",
+                "JavaScript"
+            ],
+            "repo_url": "https://github.com/DecoMahendra/portfolio-deco",
+            "demo_url": null,
+            "sort_order": 0,
+            "created_at": "2026-09-19T14:29:53.000000Z",
+            "updated_at": "2026-09-19T14:29:53.000000Z",
+            "images": [
+                {
+                    "id": 1,
+                    "project_id": 1,
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840527/portfolio/projects/tj8plb09o65j5jkcqzxy.png",
+                    "public_id": "portfolio/projects/tj8plb09o65j5jkcqzxy",
+                    "alt": null,
+                    "sort_order": 0,
+                    "created_at": "2026-09-19T17:55:29.000000Z",
+                    "updated_at": "2026-09-19T17:55:29.000000Z"
+                },
+                {
+                    "id": 2,
+                    "project_id": 1,
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840531/portfolio/projects/qo0zocyb6ultiuqhu7h0.png",
+                    "public_id": "portfolio/projects/qo0zocyb6ultiuqhu7h0",
+                    "alt": null,
+                    "sort_order": 1,
+                    "created_at": "2026-09-19T17:55:32.000000Z",
+                    "updated_at": "2026-09-19T17:55:32.000000Z"
+                },
+                {
+                    "id": 3,
+                    "project_id": 1,
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840535/portfolio/projects/v48wqj2itxh8rc9brqi8.png",
+                    "public_id": "portfolio/projects/v48wqj2itxh8rc9brqi8",
+                    "alt": null,
+                    "sort_order": 2,
+                    "created_at": "2026-09-19T17:55:36.000000Z",
+                    "updated_at": "2026-09-19T17:55:36.000000Z"
+                },
+                {
+                    "id": 4,
+                    "project_id": 1,
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840538/portfolio/projects/ukypzpfuhu8tnw57x6hy.png",
+                    "public_id": "portfolio/projects/ukypzpfuhu8tnw57x6hy",
+                    "alt": null,
+                    "sort_order": 3,
+                    "created_at": "2026-09-19T17:55:39.000000Z",
+                    "updated_at": "2026-09-19T17:55:39.000000Z"
+                },
+                {
+                    "id": 5,
+                    "project_id": 1,
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840541/portfolio/projects/ioj49zttshil5p68qdpz.png",
+                    "public_id": "portfolio/projects/ioj49zttshil5p68qdpz",
+                    "alt": null,
+                    "sort_order": 4,
+                    "created_at": "2026-09-19T17:55:42.000000Z",
+                    "updated_at": "2026-09-19T17:55:42.000000Z"
+                },
+                {
+                    "id": 6,
+                    "project_id": 1,
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840544/portfolio/projects/ffgp5f0qlxhqjhigtdy6.png",
+                    "public_id": "portfolio/projects/ffgp5f0qlxhqjhigtdy6",
+                    "alt": null,
+                    "sort_order": 5,
+                    "created_at": "2026-09-19T17:55:45.000000Z",
+                    "updated_at": "2026-09-19T17:55:45.000000Z"
+                }
+            ]
+        }
+    ],
+    "certificates": [
+        {
+            "id": 1,
+            "name": "Pelatihan Dasar Artificial Intelligence",
+            "organizer": "Dicoding Academy",
+            "year": "2025",
+            "image_url": null,
+            "image_public_id": null,
+            "sort_order": 0,
+            "created_at": "2026-09-19T14:29:54.000000Z",
+            "updated_at": "2026-09-19T14:29:54.000000Z"
+        },
+        {
+            "id": 2,
+            "name": "Pemateri Kegiatan Himpunan Mahasiswa",
+            "organizer": "HIMA-SIKC Politeknik Negeri Indramayu",
+            "year": "2024, 2025",
+            "image_url": null,
+            "image_public_id": null,
+            "sort_order": 1,
+            "created_at": "2026-09-19T14:29:54.000000Z",
+            "updated_at": "2026-09-19T14:29:54.000000Z"
+        },
+        {
+            "id": 3,
+            "name": "Pelatihan Pers",
+            "organizer": "Persatuan Wartawan Indonesia (PWI) Indramayu",
+            "year": "2024",
+            "image_url": null,
+            "image_public_id": null,
+            "sort_order": 2,
+            "created_at": "2026-09-19T14:29:54.000000Z",
+            "updated_at": "2026-09-19T14:29:54.000000Z"
+        },
+        {
+            "id": 4,
+            "name": "Seminar Teknologi Himpunan Mahasiswa",
+            "organizer": "HIMATIF Politeknik Negeri Indramayu",
+            "year": "2023",
+            "image_url": null,
+            "image_public_id": null,
+            "sort_order": 3,
+            "created_at": "2026-09-19T14:29:54.000000Z",
+            "updated_at": "2026-09-19T14:29:54.000000Z"
+        },
+        {
+            "id": 5,
+            "name": "Seminar Teknologi Himpunan Mahasiswa",
+            "organizer": "HIMA-SIKC Politeknik Negeri Indramayu",
+            "year": "2024, 2025",
+            "image_url": null,
+            "image_public_id": null,
+            "sort_order": 4,
+            "created_at": "2026-09-19T14:29:54.000000Z",
+            "updated_at": "2026-09-19T14:29:54.000000Z"
+        }
+    ]
+}
