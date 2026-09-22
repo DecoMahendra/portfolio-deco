@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router'
 import { NAV_ITEMS } from '../../data/navigation'
 import { useLockBodyScroll } from '../../hooks/useLockBodyScroll'
 
@@ -52,8 +53,8 @@ function MobileMenu({ isOpen, onClose, activeId }) {
 
             return (
               <li key={item.id} className="border-b border-line-soft">
-                <a
-                  href={`#${item.id}`}
+                <Link
+                  to={`/#${item.id}`}
                   onClick={onClose}
                   aria-current={isActive ? 'true' : undefined}
                   /* transitionDelay membuat link muncul satu per satu (berurutan)
@@ -67,19 +68,19 @@ function MobileMenu({ isOpen, onClose, activeId }) {
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   {item.label}
-                </a>
+                </Link>
               </li>
             )
           })}
         </ul>
 
-        <a
-          href="#contact"
+        <Link
+          to="/#contact"
           onClick={onClose}
           className="mt-10 flex items-center justify-center rounded-full bg-accent px-6 py-4 font-display text-base font-bold text-page transition-colors hover:bg-accent-deep"
         >
           Hubungi Saya
-        </a>
+        </Link>
       </nav>
     </div>
   )

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router'
 import Container from '../ui/Container'
 import MenuToggle from './MenuToggle'
 import MobileMenu from './MobileMenu'
@@ -15,10 +16,21 @@ import { useHasScrolled } from '../../hooks/useHasScrolled'
      supaya tulisan menu tetap terbaca di atas konten apa pun.
   3. Menu yang sesuai posisi scroll akan menyala (lihat hook useActiveSection).
 */
+/*
+  Section hanya ada di beranda. Di halaman lain, daftar kosong ini membuat
+  pemantauan berhenti — dan saat kembali ke beranda, daftar berganti lagi
+  sehingga pemantauan dipasang ulang ke section yang baru dirender.
+  Ditaruh di luar komponen supaya tidak dibuat ulang di setiap render.
+*/
+const NO_SECTIONS = []
+
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const hasScrolled = useHasScrolled()
-  const activeId = useActiveSection(SECTION_IDS)
+  const isHome = useLocation().pathname === '/'
+  const observedId = useActiveSection(isHome ? SECTION_IDS : NO_SECTIONS)
+  // Di luar beranda tidak ada menu yang menyala.
+  const activeId = isHome ? observedId : ''
 
   const closeMenu = () => setIsMenuOpen(false)
   const toggleMenu = () => setIsMenuOpen((open) => !open)
@@ -40,8 +52,8 @@ function Navbar() {
             className="flex h-16 items-center justify-between md:h-20"
           >
             {/* --- Logo / nama --- */}
-            <a
-              href="#home"
+            <Link
+              to="/"
               onClick={closeMenu}
               className="group font-display text-lg font-bold tracking-tight text-heading"
             >
@@ -51,7 +63,7 @@ function Navbar() {
               <span className="ml-0.5 inline-block text-accent transition-transform duration-300 ease-out-expo group-hover:scale-150 motion-reduce:transition-none">
                 .
               </span>
-            </a>
+            </Link>
 
             {/* --- Menu desktop (disembunyikan di HP) --- */}
             <ul className="hidden items-center gap-1 md:flex">
@@ -60,8 +72,10 @@ function Navbar() {
 
                 return (
                   <li key={item.id}>
-                    <a
-                      href={`#${item.id}`}
+                    {/* "/#about", bukan "#about": dari halaman lain, "#about"
+                        akan menuju /projects#about yang tidak ada. */}
+                    <Link
+                      to={`/#${item.id}`}
                       /* aria-current memberi tahu pembaca layar menu mana yang
                          sedang aktif. Warna saja tidak cukup: pengguna tunanetra
                          dan pengguna buta warna tidak bisa melihatnya. */
@@ -81,15 +95,15 @@ function Navbar() {
                           className="absolute inset-x-4 -bottom-px h-px bg-accent"
                         />
                       )}
-                    </a>
+                    </Link>
                   </li>
                 )
               })}
             </ul>
 
             {/* --- Tombol ajakan (desktop) --- */}
-            <a
-              href="#contact"
+            <Link
+              to="/#contact"
               className="group hidden items-center gap-2 rounded-full border border-line bg-raised px-5 py-2.5 text-sm font-semibold text-heading transition-colors duration-200 hover:border-accent hover:bg-accent hover:text-page motion-reduce:transition-none md:inline-flex"
             >
               Hubungi Saya
@@ -98,7 +112,7 @@ function Navbar() {
                 aria-hidden="true"
                 className="h-1.5 w-1.5 rounded-full bg-accent transition-colors group-hover:bg-page"
               />
-            </a>
+            </Link>
 
             {/* --- Tombol hamburger (HP) --- */}
             <MenuToggle isOpen={isMenuOpen} onToggle={toggleMenu} />
