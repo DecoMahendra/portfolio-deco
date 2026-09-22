@@ -2,7 +2,17 @@
 
 Website portfolio pribadi. Dibuat dengan React + Vite + Tailwind CSS.
 
-Status saat ini: **Phase 8 — Testing selesai. Portfolio siap dipakai.**
+Status saat ini: **online, isinya diambil dari dashboard admin.**
+
+## Mengubah isi website
+
+Teks, skill, pengalaman, project, dan sertifikat **tidak** diubah di kode,
+melainkan lewat dashboard admin di [`../backend/`](../backend/). Setelah itu
+jalankan `php artisan portfolio:export` di folder backend — perintah itu
+menulis ulang `src/data/portfolio.json` — lalu commit dan push.
+
+Yang masih diubah langsung di kode: menu navbar (`src/data/navigation.js`),
+tautan kontak (`src/data/contact.js`), dan foto profil (`src/assets/`).
 
 ---
 
@@ -47,8 +57,10 @@ frontend/
 │   │   ├── sections/  Isi halaman: Hero, About, Skills, Projects, Contact
 │   │   └── ui/        Bata dasar yang dipakai berulang: Container, Section
 │   ├── data/          Isi/konten yang dipisah dari tampilan
-│                      (navigation, profile, skills, experience,
-│                      education, projects, certificates, contact)
+│                      portfolio.json = hasil ekspor dari dashboard admin
+│                      profile, skills, experience, education, projects,
+│                      certificates = penerjemah dari portfolio.json
+│                      navigation, contact = ditulis langsung di sini
 │   ├── hooks/         Logika yang bisa dipakai ulang (useActiveSection, dll)
 │   ├── App.jsx        Komponen utama - merangkai seluruh halaman
 │   ├── main.jsx       Titik mulai aplikasi. Menempelkan App ke index.html
@@ -144,4 +156,4 @@ Dokumentasi resmi v4: https://tailwindcss.com/docs
 | ~~7~~ | ~~Responsive + Animation + SEO~~ ✅ selesai |
 | ~~8~~ | ~~Testing~~ ✅ selesai |
 
-Phase 9–14 (Laravel + Admin Dashboard) dikerjakan setelah Phase 1–8 selesai.
+Selanjutnya: **Media & Galeri** — halaman project dan sertifikat, galeri gambar dari dashboard admin.
