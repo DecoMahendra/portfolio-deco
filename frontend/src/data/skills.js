@@ -1,40 +1,17 @@
+import portfolio from './portfolio.json'
+
 /*
   DAFTAR KEAHLIAN
 
-  Diambil dari bagian "Kemampuan Utama" di CV, dikelompokkan supaya pembaca
-  langsung menangkap luasnya kemampuan tanpa perlu menebak dari nama-nama
-  teknologinya.
+  Sumbernya dari dashboard admin (menu Skill), lewat portfolio.json.
+  Urutan kelompok dan urutan skill di dalamnya mengikuti yang diatur di sana.
 
-  Empat tambahan di luar CV, semuanya bisa dibuktikan dari project ini sendiri:
-  - Tailwind CSS, Vite, Git, GitHub
-
-  Satu tambahan berdasarkan penalaran: PHP — karena Laravel adalah framework
-  PHP, jadi tidak mungkin dipakai tanpa menulis PHP. Ditulis terpisah karena
-  banyak lowongan dan sistem penyaring lamaran mencari kata "PHP", bukan "Laravel".
-
+  id       = nomor dari database, dipakai sebagai key di React
   category = judul kelompok
-  items    = daftar teknologi di kelompok itu
+  items    = daftar nama skill di kelompok itu
 */
-
-export const SKILL_GROUPS = [
-  {
-    category: 'Pengembangan Web',
-    items: ['HTML', 'CSS', 'JavaScript', 'React', 'Laravel', 'Tailwind CSS'],
-  },
-  {
-    category: 'Bahasa Pemrograman',
-    items: ['PHP', 'Java', 'Python'],
-  },
-  {
-    category: 'Basis Data & Pengolahan Data',
-    items: ['MySQL', 'Pandas', 'NumPy'],
-  },
-  {
-    category: 'Mobile & IoT',
-    items: ['Flutter', 'Internet of Things'],
-  },
-  {
-    category: 'Tools',
-    items: ['Git', 'GitHub', 'Vite'],
-  },
-]
+export const SKILL_GROUPS = portfolio.skills.map((group) => ({
+  id: group.id,
+  category: group.name,
+  items: group.skills.map((skill) => skill.name),
+}))

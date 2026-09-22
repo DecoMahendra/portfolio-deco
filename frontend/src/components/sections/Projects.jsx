@@ -27,7 +27,7 @@ function Projects() {
       <ul className="grid gap-6">
         {PROJECTS.map((project) => (
           <li
-            key={project.name}
+            key={project.id}
             className="rounded-card border border-line bg-surface p-7 transition-colors duration-200 hover:border-faint motion-reduce:transition-none md:p-9"
           >
             {/* Isi kartu dibagi dua kolom: penjelasan di kiri, teknologi dan
@@ -141,7 +141,7 @@ function Projects() {
         <ul className="mt-6">
           {CERTIFICATES.map((item) => (
             <li
-              key={`${item.name} ${item.year}`}
+              key={item.id}
               className="grid gap-2 border-t border-line-soft py-6 md:grid-cols-[11rem_1fr] md:gap-10"
             >
               <p className="font-mono text-eyebrow uppercase tracking-[0.18em] text-faint md:pt-1">

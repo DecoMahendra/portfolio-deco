@@ -33,7 +33,7 @@ function Skills() {
       <ul>
         {SKILL_GROUPS.map((group) => (
           <li
-            key={group.category}
+            key={group.id}
             className="grid gap-3 border-t border-line-soft py-6 md:grid-cols-[11rem_1fr] md:gap-10"
           >
             {/* h3 karena judul section-nya (h2) sudah dipakai oleh Section.
@@ -70,7 +70,7 @@ function Skills() {
                walau kamu pernah berada di tempat yang sama dua kali —
                seperti dua jabatan berbeda di HIMA-SIKC. */
             <li
-              key={`${item.company} ${item.period}`}
+              key={item.id}
               className="grid gap-3 border-t border-line-soft py-8 md:grid-cols-[11rem_1fr] md:gap-10"
             >
               <p className="font-mono text-eyebrow uppercase tracking-[0.18em] text-faint md:pt-1.5">
@@ -100,7 +100,7 @@ function Skills() {
         <ol className="mt-6">
           {EDUCATION.map((item) => (
             <li
-              key={`${item.school} ${item.period}`}
+              key={item.id}
               className="grid gap-3 border-t border-line-soft py-6 md:grid-cols-[11rem_1fr] md:gap-10"
             >
               <p className="font-mono text-eyebrow uppercase tracking-[0.18em] text-faint md:pt-1.5">

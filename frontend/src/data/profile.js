@@ -1,37 +1,31 @@
+import portfolio from './portfolio.json'
+
 /*
   DATA DIRI
 
-  Untuk mengubah isi Hero atau About, cukup ubah nilai di file ini.
-  Kode JSX-nya tidak perlu disentuh.
+  Sumbernya dari dashboard admin:
+  dashboard -> database -> php artisan portfolio:export -> portfolio.json
+  Untuk mengubah isi Hero, About, atau Footer, ubah lewat dashboard admin,
+  bukan di file ini — isi file ini ikut berubah setiap kali ekspor.
 
-  Kenapa dipisah ke file sendiri?
-  Data ini dipakai di beberapa tempat (Hero, About, nanti Contact dan Footer).
-  Di Phase 13 nanti sumbernya diganti jadi API Laravel — kalau sudah terpisah
-  seperti ini, cukup ganti sumber datanya tanpa membongkar tampilannya.
+  File ini hanya menerjemahkan bentuk data dari database ke bentuk yang
+  dipakai komponen, supaya komponennya tidak perlu diubah.
 */
+const { profile } = portfolio
 
 export const PROFILE = {
-  name: 'Deco Mahendra',
+  name: profile.name,
+  role: profile.role,
+  location: profile.location,
+  availability: profile.availability,
+  tagline: profile.tagline,
 
-  role: 'Full Stack Developer',
+  /*
+    Di database bio berupa satu teks, paragrafnya dipisah baris kosong.
+    \r? : isian dari form di Windows memakai akhir baris \r\n, bukan \n.
+    filter: buang paragraf kosong kalau ada baris kosong berlebih.
+  */
+  bio: profile.bio.split(/\r?\n\s*\r?\n/).filter(Boolean),
 
-  // Ditampilkan sebagai label kecil di About.
-  location: 'Indramayu, Jawa Barat',
-
-  // Label di bagian paling atas Hero, bersebelahan dengan titik hijau berkedip.
-  availability: 'Terbuka untuk project freelance',
-
-  // Satu kalimat di bawah judul besar Hero.
-  tagline:
-    'Full Stack Developer yang membangun website modern, responsif, dan berorientasi pada pengalaman pengguna.',
-
-  // Paragraf untuk section About. Boleh ditambah atau dikurangi jumlahnya —
-  // tampilannya menyesuaikan otomatis.
-  bio: [
-    'Mahasiswa D4 Sistem Informasi Kota Cerdas di Politeknik Negeri Indramayu, dengan ketertarikan dalam membangun aplikasi web modern dari sisi frontend hingga backend.',
-    'Saya senang mempelajari teknologi baru, menyelesaikan masalah melalui kode, dan mengembangkan project yang memiliki tampilan menarik serta fungsional.',
-  ],
-
-  // Teks pengganti foto untuk pembaca layar dan saat gambar gagal dimuat.
-  photoAlt: 'Foto Deco Mahendra',
+  photoAlt: profile.photo_alt,
 }

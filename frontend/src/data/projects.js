@@ -1,26 +1,26 @@
+import portfolio from './portfolio.json'
+
 /*
   DAFTAR PROJECT
 
+  Sumbernya dari dashboard admin (menu Project), lewat portfolio.json.
+
+  id          = nomor dari database, dipakai sebagai key di React
   name        = nama project
-  description = penjelasan singkat: apa fungsinya, masalah apa yang diselesaikan
+  description = penjelasan singkat
   tech        = teknologi yang dipakai
-  repo        = link repository GitHub. Isi null kalau tidak ada atau masih privat
-  demo        = link website yang sudah online. Isi null kalau belum di-deploy
+  repo        = link repository, atau null kalau tidak ada
+  demo        = link website yang sudah online, atau null
 
-  Bagian link otomatis menyesuaikan: kalau repo atau demo bernilai null,
-  tombolnya tidak ditampilkan.
+  Nama repo/demo dipertahankan (di database: repo_url/demo_url) supaya
+  komponen Projects tidak perlu diubah. Kalau bernilai null, tombolnya
+  otomatis tidak ditampilkan.
 */
-
-export const PROJECTS = [
-  {
-    name: 'Website Portfolio Pribadi',
-    description:
-      'Website portfolio satu halaman yang dibangun dari nol tanpa template. ' +
-      'Memiliki design system sendiri, navigasi yang otomatis menandai bagian ' +
-      'yang sedang dibaca, serta dukungan navigasi keyboard dan pembaca layar. ' +
-      'Backend Laravel dan dashboard admin sedang dalam rencana pengembangan.',
-    tech: ['React', 'Vite', 'Tailwind CSS', 'JavaScript'],
-    repo: 'https://github.com/DecoMahendra/portfolio-deco',
-    demo: null,
-  },
-]
+export const PROJECTS = portfolio.projects.map((project) => ({
+  id: project.id,
+  name: project.name,
+  description: project.description,
+  tech: project.tech,
+  repo: project.repo_url,
+  demo: project.demo_url,
+}))
