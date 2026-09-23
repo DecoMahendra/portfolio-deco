@@ -16,7 +16,7 @@ function Contact() {
   return (
     <Section
       id="contact"
-      eyebrow="04 — Contact"
+      eyebrow="05 — Contact"
       title="Mari bekerja sama"
       description="Terbuka untuk project freelance, diskusi teknis, atau sekadar bertukar pikiran soal pengembangan web. Silakan hubungi lewat salah satu tautan di bawah."
       className="border-t border-line-soft"
