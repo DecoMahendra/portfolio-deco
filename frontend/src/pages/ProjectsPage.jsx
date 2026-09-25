@@ -2,6 +2,7 @@ import BackLink from '../components/ui/BackLink'
 import Container from '../components/ui/Container'
 import ProjectCard from '../components/ui/ProjectCard'
 import { PROJECTS } from '../data/projects'
+import { SITE_URL } from '../data/site'
 
 /*
   ProjectsPage — daftar semua project (alamat "/projects").
@@ -16,6 +17,7 @@ function ProjectsPage() {
   return (
     <>
       <title>Project — Deco Mahendra</title>
+      <link rel="canonical" href={`${SITE_URL}/projects`} />
       <meta
         name="description"
         content="Kumpulan project yang dikerjakan Deco Mahendra: aplikasi web, teknologi yang dipakai, dan tautan ke kode maupun demo."

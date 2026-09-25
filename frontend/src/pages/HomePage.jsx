@@ -4,6 +4,7 @@ import Contact from '../components/sections/Contact'
 import Hero from '../components/sections/Hero'
 import Projects from '../components/sections/Projects'
 import Skills from '../components/sections/Skills'
+import { SITE_URL } from '../data/site'
 
 /*
   HomePage — halaman beranda (alamat "/").
@@ -16,6 +17,9 @@ import Skills from '../components/sections/Skills'
 function HomePage() {
   return (
     <>
+      {/* Judul tab dan deskripsi beranda ditulis di index.html. */}
+      <link rel="canonical" href={SITE_URL} />
+
       <Hero />
       <About />
       <Skills />

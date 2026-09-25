@@ -2,6 +2,7 @@ import BackLink from '../components/ui/BackLink'
 import CertificateCard from '../components/ui/CertificateCard'
 import Container from '../components/ui/Container'
 import { CERTIFICATES } from '../data/certificates'
+import { SITE_URL } from '../data/site'
 
 /*
   CertificatesPage — semua pelatihan dan sertifikasi (alamat "/certificates").
@@ -16,6 +17,7 @@ function CertificatesPage() {
   return (
     <>
       <title>Pelatihan & Sertifikasi — Deco Mahendra</title>
+      <link rel="canonical" href={`${SITE_URL}/certificates`} />
       <meta
         name="description"
         content="Daftar pelatihan, seminar, dan sertifikasi yang diikuti Deco Mahendra."

@@ -4,6 +4,7 @@ import Container from '../components/ui/Container'
 import ImageCarousel from '../components/ui/ImageCarousel'
 import NotFoundPage from './NotFoundPage'
 import { PROJECTS } from '../data/projects'
+import { SITE_URL } from '../data/site'
 
 /*
   ProjectDetailPage — satu project (alamat "/projects/nama-project").
@@ -28,6 +29,7 @@ function ProjectDetailPage() {
     <>
       <title>{`${project.name} — Deco Mahendra`}</title>
       <meta name="description" content={project.description.slice(0, 155)} />
+      <link rel="canonical" href={`${SITE_URL}/projects/${project.slug}`} />
 
       <Container>
         <div className="pt-32 pb-24 md:pt-40 md:pb-32">
