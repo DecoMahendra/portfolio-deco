@@ -52,10 +52,15 @@ frontend/
 ├── src/
 │   ├── assets/        Gambar yang dipakai di dalam kode (foto profil, dll)
 │   ├── components/
-│   │   ├── layout/    Kerangka halaman: Navbar, MobileMenu, MenuToggle,
-│   │   │                Footer
-│   │   ├── sections/  Isi halaman: Hero, About, Skills, Projects, Contact
-│   │   └── ui/        Bata dasar yang dipakai berulang: Container, Section
+│   │   ├── layout/    Kerangka semua halaman: Layout, Navbar, MobileMenu,
+│   │   │                MenuToggle, Footer
+│   │   ├── sections/  Isi beranda: Hero, About, Skills, Projects,
+│   │   │                Certificates, Contact
+│   │   └── ui/        Bata dasar yang dipakai berulang: Container, Section,
+│   │                    ProjectCard, CertificateCard, Marquee, ImageCarousel,
+│   │                    BackLink
+│   ├── pages/         Satu berkas per halaman: HomePage, ProjectsPage,
+│   │                    ProjectDetailPage, CertificatesPage, NotFoundPage
 │   ├── data/          Isi/konten yang dipisah dari tampilan
 │                      portfolio.json = hasil ekspor dari dashboard admin
 │                      profile, skills, experience, education, projects,
@@ -113,6 +118,35 @@ tanpa perlu diatur per-breakpoint:
 
 ---
 
+## Halaman dan alamatnya
+
+Website ini beberapa halaman, diatur React Router (lihat `src/App.jsx`):
+
+| Alamat | Halaman |
+|---|---|
+| `/` | Beranda — semua section jadi satu |
+| `/projects` | Daftar semua project |
+| `/projects/{slug}` | Detail satu project: galeri gambar, teknologi, tautan |
+| `/certificates` | Daftar pelatihan & sertifikasi |
+| alamat lain | Halaman "tidak ditemukan" |
+
+Tiga hal yang mudah terlupa saat menambah halaman baru:
+
+- **Link ke section beranda ditulis `/#about`**, bukan `#about`. Tanpa garis
+  miring, dari halaman lain ia menuju `/projects#about` yang tidak ada.
+- **`vercel.json`** berisi aturan supaya membuka alamat dalam secara langsung
+  (misalnya dari link yang dibagikan) tetap memuat website, bukan 404 Vercel.
+- **Alamat kanonik** ditulis di masing-masing halaman, bukan di `index.html`.
+  Kalau ditulis sekali di `index.html`, semua halaman akan mengaku sebagai
+  beranda dan Google bisa berhenti mengindeks halaman lainnya.
+
+Yang belum: pratinjau saat link dibagikan ke WhatsApp/LinkedIn selalu memakai
+judul dan gambar beranda. Aplikasi itu tidak menjalankan JavaScript, jadi judul
+per halaman yang dipasang React tidak terbaca olehnya. Memperbaikinya butuh
+*prerender*.
+
+---
+
 ## ⚠️ Catatan penting: Tailwind CSS versi 4
 
 Project ini memakai **Tailwind CSS v4**, bukan v3.
@@ -137,7 +171,6 @@ Dokumentasi resmi v4: https://tailwindcss.com/docs
 
 | Library | Alasan tidak dipakai |
 |---|---|
-| React Router | Website ini cuma satu halaman. Pindah section pakai link biasa `<a href="#about">`. |
 | Axios | Browser sudah punya `fetch()` bawaan dengan fungsi yang sama. |
 | Framer Motion | Ukurannya besar. Animasi yang dibutuhkan cukup dengan CSS + IntersectionObserver. |
 
@@ -156,4 +189,4 @@ Dokumentasi resmi v4: https://tailwindcss.com/docs
 | ~~7~~ | ~~Responsive + Animation + SEO~~ ✅ selesai |
 | ~~8~~ | ~~Testing~~ ✅ selesai |
 
-Selanjutnya: **Media & Galeri** — halaman project dan sertifikat, galeri gambar dari dashboard admin.
+Selanjutnya: **Phase 14 — Testing** (Lighthouse, navigasi keyboard, tampilan di HP).

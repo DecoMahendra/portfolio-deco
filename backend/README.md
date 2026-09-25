@@ -324,5 +324,5 @@ backend/
 |---|---|
 | ~~9–12~~ | ~~Laravel, Database, API, Admin Dashboard~~ ✅ selesai |
 | ~~13~~ | ~~Hubungkan React + Laravel~~ ✅ selesai (lewat ekspor) |
-| Media & Galeri | Halaman project dan sertifikat di frontend, galeri gambar |
+| ~~Media & Galeri~~ | ~~Halaman project dan sertifikat di frontend, galeri gambar~~ ✅ selesai |
 | 14 | Testing |
