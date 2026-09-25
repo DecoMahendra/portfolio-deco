@@ -70,6 +70,9 @@ frontend/
 │   ├── App.jsx        Komponen utama - merangkai seluruh halaman
 │   ├── main.jsx       Titik mulai aplikasi. Menempelkan App ke index.html
 │   └── index.css      Design system: warna, font, ukuran, gaya dasar
+├── scripts/           Dijalankan setelah build, bukan bagian dari website:
+│                        prerender-meta.mjs (pratinjau link per halaman)
+├── vercel.json        Aturan Vercel: alamat dalam tetap memuat website
 ├── index.html         Kerangka HTML. Isi <head> untuk SEO & font ada di sini
 ├── vite.config.js     Pengaturan Vite (plugin React & Tailwind didaftarkan di sini)
 └── package.json       Daftar library yang dipakai project ini
@@ -140,10 +143,24 @@ Tiga hal yang mudah terlupa saat menambah halaman baru:
   Kalau ditulis sekali di `index.html`, semua halaman akan mengaku sebagai
   beranda dan Google bisa berhenti mengindeks halaman lainnya.
 
-Yang belum: pratinjau saat link dibagikan ke WhatsApp/LinkedIn selalu memakai
-judul dan gambar beranda. Aplikasi itu tidak menjalankan JavaScript, jadi judul
-per halaman yang dipasang React tidak terbaca olehnya. Memperbaikinya butuh
-*prerender*.
+### Pratinjau saat link dibagikan
+
+WhatsApp, LinkedIn, Facebook, dan Discord **tidak menjalankan JavaScript** saat
+mengambil pratinjau link — mereka hanya membaca berkas HTML apa adanya. Padahal
+judul per halaman di website ini dipasang React saat halaman dibuka.
+
+Karena itu `npm run build` menjalankan `scripts/prerender-meta.mjs`, yang
+membuat salinan `index.html` untuk tiap halaman dengan judul, deskripsi, dan
+gambar pratinjau yang sesuai — misalnya `dist/projects/nama-project/index.html`
+memakai nama dan gambar sampul project itu. Vercel memeriksa berkas yang
+benar-benar ada lebih dulu, jadi berkas itulah yang dibaca aplikasi chat.
+
+Untuk manusia tidak ada yang berubah: begitu React jalan, judul dari React yang
+menang, dan perpindahan halaman tetap tanpa memuat ulang.
+
+> **Kalau menambah jenis halaman baru, tambahkan juga di daftar `halaman` di
+> dalam `scripts/prerender-meta.mjs`.** Kalau terlupa, pratinjau halaman itu
+> kembali memakai isi beranda — dan itu tidak terlihat saat `npm run dev`.
 
 ---
 
