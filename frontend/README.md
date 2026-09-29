@@ -72,7 +72,8 @@ frontend/
 │   └── index.css      Design system: warna, font, ukuran, gaya dasar
 ├── scripts/           Dijalankan setelah build, bukan bagian dari website:
 │                        prerender-meta.mjs (pratinjau link per halaman)
-├── vercel.json        Aturan Vercel: alamat dalam tetap memuat website
+├── vercel.json        Aturan Vercel: folder hasil build + alamat dalam
+│                        tetap memuat website
 ├── index.html         Kerangka HTML. Isi <head> untuk SEO & font ada di sini
 ├── vite.config.js     Pengaturan Vite (plugin React & Tailwind didaftarkan di sini)
 └── package.json       Daftar library yang dipakai project ini
@@ -137,8 +138,12 @@ Tiga hal yang mudah terlupa saat menambah halaman baru:
 
 - **Link ke section beranda ditulis `/#about`**, bukan `#about`. Tanpa garis
   miring, dari halaman lain ia menuju `/projects#about` yang tidak ada.
-- **`vercel.json`** berisi aturan supaya membuka alamat dalam secara langsung
-  (misalnya dari link yang dibagikan) tetap memuat website, bukan 404 Vercel.
+- **`vercel.json`** berisi dua hal: aturan supaya membuka alamat dalam secara
+  langsung (misalnya dari link yang dibagikan) tetap memuat website, dan
+  penyebutan folder hasil build (`dist`). Bagian kedua itu WAJIB: begitu
+  `vercel.json` ada, Vercel berhenti menebak sendiri jenis project-nya dan
+  mencari folder bernama `build` — kalau tidak disebutkan, semua deployment
+  gagal dengan pesan *No Output Directory named "build" found*.
 - **Alamat kanonik** ditulis di masing-masing halaman, bukan di `index.html`.
   Kalau ditulis sekali di `index.html`, semua halaman akan mengaku sebagai
   beranda dan Google bisa berhenti mengindeks halaman lainnya.
