@@ -1,0 +1,6 @@
+# Mesin pencari boleh membaca seluruh website ini.
+User-agent: *
+Allow: /
+
+# Daftar semua halaman, dibuat otomatis saat build (lihat scripts/prerender-meta.mjs).
+Sitemap: https://decomahendra.vercel.app/sitemap.xml

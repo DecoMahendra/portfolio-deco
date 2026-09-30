@@ -110,4 +110,21 @@ for (const { path, judul, deskripsi, gambar } of halaman) {
   writeFileSync(join(folder, 'index.html'), html)
 }
 
-console.log(`Pratinjau link dibuat untuk ${halaman.length} halaman.`)
+/*
+  sitemap.xml — daftar alamat halaman untuk mesin pencari.
+
+  Dibuat di sini, bukan ditulis tangan, supaya halaman project baru otomatis
+  ikut terdaftar setiap kali data diekspor dan website dibangun ulang.
+  Halaman "tidak ditemukan" sengaja tidak dimasukkan.
+*/
+const alamat = ['', ...halaman.map((h) => h.path)]
+
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${alamat.map((path) => `  <url><loc>${SITE_URL}/${path}</loc></url>`).join('\n')}
+</urlset>
+`
+
+writeFileSync(join(dist, 'sitemap.xml'), sitemap)
+
+console.log(`Pratinjau link dibuat untuk ${halaman.length} halaman, sitemap berisi ${alamat.length} alamat.`)

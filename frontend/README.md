@@ -71,7 +71,7 @@ frontend/
 │   ├── main.jsx       Titik mulai aplikasi. Menempelkan App ke index.html
 │   └── index.css      Design system: warna, font, ukuran, gaya dasar
 ├── scripts/           Dijalankan setelah build, bukan bagian dari website:
-│                        prerender-meta.mjs (pratinjau link per halaman)
+│                        prerender-meta.mjs (pratinjau link + sitemap.xml)
 ├── vercel.json        Aturan Vercel: folder hasil build + alamat dalam
 │                        tetap memuat website
 ├── index.html         Kerangka HTML. Isi <head> untuk SEO & font ada di sini
@@ -163,9 +163,14 @@ benar-benar ada lebih dulu, jadi berkas itulah yang dibaca aplikasi chat.
 Untuk manusia tidak ada yang berubah: begitu React jalan, judul dari React yang
 menang, dan perpindahan halaman tetap tanpa memuat ulang.
 
+Skrip yang sama juga menulis **`sitemap.xml`** — daftar alamat halaman untuk
+mesin pencari. Dibuat otomatis supaya halaman project baru ikut terdaftar
+sendiri, tanpa perlu diingat. `robots.txt` di `public/` menunjuk ke berkas itu.
+
 > **Kalau menambah jenis halaman baru, tambahkan juga di daftar `halaman` di
 > dalam `scripts/prerender-meta.mjs`.** Kalau terlupa, pratinjau halaman itu
-> kembali memakai isi beranda — dan itu tidak terlihat saat `npm run dev`.
+> kembali memakai isi beranda dan alamatnya tidak masuk sitemap — dan itu tidak
+> terlihat saat `npm run dev`.
 
 ---
 
