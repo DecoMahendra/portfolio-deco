@@ -34,11 +34,33 @@ function CertificateCard({ certificate, headingLevel = 3 }) {
             className="h-full w-full object-cover"
           />
         ) : (
-          <div
-            aria-hidden="true"
-            className="flex h-full items-center justify-center px-6 text-center font-display text-3xl font-bold leading-tight text-line"
-          >
-            {certificate.year}
+          /*
+            Belum ada gambar: ikon sertifikat sebagai pengganti sementara.
+            Dulu di sini tahunnya dicetak besar, tapi warnanya terlalu redup
+            untuk teks (kontras 1,18 — minimal 3:1), sedangkan menerangkannya
+            membuat tahun tampil dua kali di kartu yang sama. Ikon dekoratif
+            tidak terikat aturan kontras teks dan tetap kalem.
+
+            Begitu gambar diunggah lewat dashboard admin, ikon ini digantikan
+            gambar itu secara otomatis.
+          */
+          <div aria-hidden="true" className="flex h-full items-center justify-center">
+            <svg
+              width="56"
+              height="56"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-line"
+            >
+              {/* Lembaran sertifikat dengan pita di bawahnya. */}
+              <path d="M4 4h16v11H4z" />
+              <path d="M8 8h8M8 11h5" />
+              <path d="M9 15v5l3-2 3 2v-5" />
+            </svg>
           </div>
         )}
       </div>
