@@ -27,6 +27,15 @@ export function useAutoScroll(ref, { pixelsPerSecond = 40, isPaused = false } = 
       const oneCopy = element.scrollWidth / 2
       if (oneCopy === 0) return
 
+      /*
+        Jangan melompat selama ada yang sedang disorot keyboard di dalamnya.
+        Saat Tab masuk ke sebuah kartu, browser menggulir supaya kartu itu
+        terlihat. Kalau kita ikut melompatkan posisinya, kartunya pindah
+        tempat, browser menggulir lagi, dan keduanya saling berebut —
+        tampil sebagai kedap-kedip.
+      */
+      if (element.contains(document.activeElement)) return
+
       if (element.scrollLeft >= oneCopy) element.scrollLeft -= oneCopy
       else if (element.scrollLeft <= 0) element.scrollLeft += oneCopy
     }

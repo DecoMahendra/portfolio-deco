@@ -80,6 +80,9 @@ function Marquee({ ariaLabel, children }) {
       scrollbar disembunyikan: batang gulirnya akan memotong tampilan kartu
       touch-callout & select-none: menahan jari tidak memunculkan menu
       mask-image      : kedua tepi memudar, kartu terlihat masuk dan keluar halus
+      scroll-px-10    : saat kartu disorot keyboard, browser menggulirnya
+                        sampai 2,5rem dari tepi — bukan mepet di bagian yang
+                        memudar, supaya kotak fokusnya benar-benar terlihat
     */
     <div
       ref={trackRef}
@@ -93,7 +96,7 @@ function Marquee({ ariaLabel, children }) {
       onPointerCancel={() => setIsPressed(false)}
       onFocusCapture={() => setHasFocus(true)}
       onBlurCapture={() => setHasFocus(false)}
-      className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] select-none [-webkit-touch-callout:none] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+      className="overflow-x-auto scroll-px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] select-none [-webkit-touch-callout:none] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
     >
       <div className="flex w-max">
         {renderCopy(false)}
