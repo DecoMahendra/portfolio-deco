@@ -10,8 +10,10 @@
         </a>
     </div>
 
-    {{-- overflow-x-auto: tabel lebar digeser di dalam kotak ini. overscroll-x-contain: geseran berhenti di kotak, tidak bocor ke halaman. --}}
-    <div class="overflow-x-auto overscroll-x-contain rounded-lg border border-line">
+    {{-- overflow-x-auto: tabel lebar digeser di dalam kotak ini. overscroll-x-contain: geseran berhenti di kotak, tidak bocor ke halaman.
+         relative: kolom terakhir memakai <span class="sr-only"> yang position:absolute. Tanpa relative di sini, elemen itu dihitung
+         terhadap HALAMAN, bukan kotak ini — jadi lolos dari overflow-x-auto dan membuat halaman ikut bisa digeser ke samping di HP. --}}
+    <div class="relative overflow-x-auto overscroll-x-contain rounded-lg border border-line">
         <table class="w-full text-left text-sm">
             <thead class="bg-surface text-faint">
                 <tr>
