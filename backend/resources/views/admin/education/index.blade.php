@@ -5,7 +5,7 @@
 @section('content')
     <div class="mb-8 flex items-center justify-between">
         <h1 class="text-2xl font-semibold text-heading">Pendidikan</h1>
-        <a href="{{ route('admin.education.create') }}" class="text-sm font-semibold text-accent hover:text-accent-deep">
+        <a href="{{ route('admin.education.create') }}" class="inline-flex items-center py-3 -my-3 text-sm font-semibold text-accent hover:text-accent-deep">
             + Tambah
         </a>
     </div>
@@ -32,13 +32,13 @@
                         <td class="px-4 py-3">{{ $item->program }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">{{ $item->period }}</td>
                         <td class="px-4 py-3">
-                            <div class="flex justify-end gap-4 whitespace-nowrap">
-                                <a href="{{ route('admin.education.edit', $item) }}" class="text-accent hover:text-accent-deep">Edit</a>
+                            <div class="flex justify-end gap-6 whitespace-nowrap">
+                                <a href="{{ route('admin.education.edit', $item) }}" class="inline-flex items-center px-3 -mx-3 py-3 -my-3 text-accent hover:text-accent-deep">Edit</a>
                                 <form method="POST" action="{{ route('admin.education.destroy', $item) }}"
                                       data-confirm="Hapus pendidikan ini?">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-danger hover:underline">Hapus</button>
+                                    <button type="submit" class="inline-flex items-center px-3 -mx-3 py-3 -my-3 text-danger hover:underline">Hapus</button>
                                 </form>
                             </div>
                         </td>

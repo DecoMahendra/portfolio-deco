@@ -10,7 +10,7 @@
         @include('admin.education._form', ['education' => null])
         <div class="flex items-center gap-5">
             <x-button>Tambah</x-button>
-            <a href="{{ route('admin.education.index') }}" class="text-sm text-faint hover:text-heading">Batal</a>
+            <a href="{{ route('admin.education.index') }}" class="inline-flex min-h-11 items-center px-2 -mx-2 text-sm text-faint hover:text-heading">Batal</a>
         </div>
     </form>
 @endsection

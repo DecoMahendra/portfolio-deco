@@ -5,7 +5,7 @@
 @section('content')
     <div class="mb-8 flex items-center justify-between">
         <h1 class="text-2xl font-semibold text-heading">Sertifikat</h1>
-        <a href="{{ route('admin.certificates.create') }}" class="text-sm font-semibold text-accent hover:text-accent-deep">
+        <a href="{{ route('admin.certificates.create') }}" class="inline-flex items-center py-3 -my-3 text-sm font-semibold text-accent hover:text-accent-deep">
             + Tambah
         </a>
     </div>
@@ -32,13 +32,13 @@
                         <td class="px-4 py-3">{{ $certificate->organizer }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">{{ $certificate->year }}</td>
                         <td class="px-4 py-3">
-                            <div class="flex justify-end gap-4 whitespace-nowrap">
-                                <a href="{{ route('admin.certificates.edit', $certificate) }}" class="text-accent hover:text-accent-deep">Edit</a>
+                            <div class="flex justify-end gap-6 whitespace-nowrap">
+                                <a href="{{ route('admin.certificates.edit', $certificate) }}" class="inline-flex items-center px-3 -mx-3 py-3 -my-3 text-accent hover:text-accent-deep">Edit</a>
                                 <form method="POST" action="{{ route('admin.certificates.destroy', $certificate) }}"
                                       data-confirm="Hapus sertifikat ini?">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-danger hover:underline">Hapus</button>
+                                    <button type="submit" class="inline-flex items-center px-3 -mx-3 py-3 -my-3 text-danger hover:underline">Hapus</button>
                                 </form>
                             </div>
                         </td>

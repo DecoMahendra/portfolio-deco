@@ -11,7 +11,7 @@
         @include('admin.skills._form')
         <div class="flex items-center gap-5">
             <x-button>Simpan</x-button>
-            <a href="{{ route('admin.skill-groups.index') }}" class="text-sm text-faint hover:text-heading">Batal</a>
+            <a href="{{ route('admin.skill-groups.index') }}" class="inline-flex min-h-11 items-center px-2 -mx-2 text-sm text-faint hover:text-heading">Batal</a>
         </div>
     </form>
 @endsection

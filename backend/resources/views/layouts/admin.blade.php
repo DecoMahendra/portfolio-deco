@@ -17,7 +17,11 @@
     <header class="sticky top-0 z-10 border-b border-line bg-surface">
         <div class="mx-auto max-w-5xl px-6 py-4">
             <div class="flex items-center justify-between gap-4">
-                <a href="{{ route('admin.dashboard') }}" class="font-semibold text-heading">
+                {{-- py-3 -my-3: area sentuh jadi 44px tingginya, lalu margin negatif
+                     menariknya kembali supaya tinggi header tidak berubah.
+                     Sengaja TIDAK memakai inline-flex di sini: "Admin" dan <span>Portfolio</span>
+                     akan jadi dua item flex, dan spasi di antaranya ikut hilang. --}}
+                <a href="{{ route('admin.dashboard') }}" class="py-3 -my-3 font-semibold text-heading">
                     Admin <span class="text-accent">Portfolio</span>
                 </a>
 
@@ -25,7 +29,7 @@
                     {{-- Logout harus POST supaya tidak bisa dipicu lewat link biasa (CSRF). --}}
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="text-sm text-faint hover:text-heading">
+                        <button type="submit" class="inline-flex min-h-11 items-center px-2 -mx-2 text-sm text-faint hover:text-heading">
                             Keluar
                         </button>
                     </form>
@@ -43,14 +47,17 @@
                 </div>
             </div>
 
-            {{-- Layar kecil: tersembunyi, dibuka lewat tombol, tersusun ke bawah. Layar >= md: selalu tampil sejajar. --}}
-            <nav id="menu" class="mt-4 hidden flex-col gap-1 text-sm md:mt-3 md:flex md:flex-row md:gap-5">
-                <a href="{{ route('admin.profile.edit') }}" class="py-2 hover:text-heading md:py-0">Profil</a>
-                <a href="{{ route('admin.skill-groups.index') }}" class="py-2 hover:text-heading md:py-0">Skill</a>
-                <a href="{{ route('admin.experiences.index') }}" class="py-2 hover:text-heading md:py-0">Pengalaman</a>
-                <a href="{{ route('admin.education.index') }}" class="py-2 hover:text-heading md:py-0">Pendidikan</a>
-                <a href="{{ route('admin.projects.index') }}" class="py-2 hover:text-heading md:py-0">Project</a>
-                <a href="{{ route('admin.certificates.index') }}" class="py-2 hover:text-heading md:py-0">Sertifikat</a>
+            {{-- Layar kecil: tersembunyi, dibuka lewat tombol, tersusun ke bawah. Layar >= md: selalu tampil sejajar.
+                 md:gap-6 (bukan gap-5) dan md:mt-6 (bukan mt-3): tautannya melebar 12px ke
+                 segala arah untuk area sentuh, jadi jarak ke tetangga — termasuk ke logo di
+                 baris atasnya — harus 24px supaya kotak sentuhnya tidak saling menimpa. --}}
+            <nav id="menu" class="mt-4 hidden flex-col gap-1 text-sm md:mt-6 md:flex md:flex-row md:gap-6">
+                <a href="{{ route('admin.profile.edit') }}" class="flex min-h-11 items-center hover:text-heading md:min-h-0 md:-my-3 md:-mx-3 md:px-3 md:py-3">Profil</a>
+                <a href="{{ route('admin.skill-groups.index') }}" class="flex min-h-11 items-center hover:text-heading md:min-h-0 md:-my-3 md:-mx-3 md:px-3 md:py-3">Skill</a>
+                <a href="{{ route('admin.experiences.index') }}" class="flex min-h-11 items-center hover:text-heading md:min-h-0 md:-my-3 md:-mx-3 md:px-3 md:py-3">Pengalaman</a>
+                <a href="{{ route('admin.education.index') }}" class="flex min-h-11 items-center hover:text-heading md:min-h-0 md:-my-3 md:-mx-3 md:px-3 md:py-3">Pendidikan</a>
+                <a href="{{ route('admin.projects.index') }}" class="flex min-h-11 items-center hover:text-heading md:min-h-0 md:-my-3 md:-mx-3 md:px-3 md:py-3">Project</a>
+                <a href="{{ route('admin.certificates.index') }}" class="flex min-h-11 items-center hover:text-heading md:min-h-0 md:-my-3 md:-mx-3 md:px-3 md:py-3">Sertifikat</a>
             </nav>
         </div>
     </header>

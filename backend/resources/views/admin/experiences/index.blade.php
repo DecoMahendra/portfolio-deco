@@ -5,7 +5,7 @@
 @section('content')
     <div class="mb-8 flex items-center justify-between">
         <h1 class="text-2xl font-semibold text-heading">Pengalaman</h1>
-        <a href="{{ route('admin.experiences.create') }}" class="text-sm font-semibold text-accent hover:text-accent-deep">
+        <a href="{{ route('admin.experiences.create') }}" class="inline-flex items-center py-3 -my-3 text-sm font-semibold text-accent hover:text-accent-deep">
             + Tambah
         </a>
     </div>
@@ -32,15 +32,15 @@
                         <td class="px-4 py-3">{{ $experience->company }}</td>
                         <td class="px-4 py-3 whitespace-nowrap">{{ $experience->period }}</td>
                         <td class="px-4 py-3">
-                            <div class="flex justify-end gap-4 whitespace-nowrap">
-                                <a href="{{ route('admin.experiences.edit', $experience) }}" class="text-accent hover:text-accent-deep">Edit</a>
+                            <div class="flex justify-end gap-6 whitespace-nowrap">
+                                <a href="{{ route('admin.experiences.edit', $experience) }}" class="inline-flex items-center px-3 -mx-3 py-3 -my-3 text-accent hover:text-accent-deep">Edit</a>
 
                                 {{-- Hapus lewat form POST + DELETE, dengan konfirmasi dulu. --}}
                                 <form method="POST" action="{{ route('admin.experiences.destroy', $experience) }}"
                                       data-confirm="Hapus pengalaman ini?">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-danger hover:underline">Hapus</button>
+                                    <button type="submit" class="inline-flex items-center px-3 -mx-3 py-3 -my-3 text-danger hover:underline">Hapus</button>
                                 </form>
                             </div>
                         </td>
