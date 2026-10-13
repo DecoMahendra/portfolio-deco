@@ -71,4 +71,4 @@ Penjelasan lengkap: [frontend/README.md](frontend/README.md) dan
 - [x] Phase 12 — Admin Dashboard
 - [x] Phase 13 — Hubungkan React + Laravel
 - [x] Media & Galeri — halaman project & sertifikat, galeri gambar
-- [ ] Phase 14 — Testing
+- [x] Phase 14 — Testing
