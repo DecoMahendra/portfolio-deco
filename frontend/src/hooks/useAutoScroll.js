@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 /*
   useAutoScroll — menggeser isi sebuah kotak ke samping sedikit demi sedikit,
@@ -16,6 +16,8 @@ import { useEffect } from 'react'
 
   pixelsPerSecond dihitung dari waktu antar frame, bukan per frame, supaya
   kecepatannya sama di layar 60Hz maupun 120Hz.
+
+  Gerakannya hanya hidup saat kotaknya benar-benar terlihat di layar.
 */
 export function useAutoScroll(ref, { pixelsPerSecond = 40, isPaused = false } = {}) {
   // Putaran tanpa ujung: berlaku juga saat digeser manual dan saat berhenti.
@@ -44,10 +46,33 @@ export function useAutoScroll(ref, { pixelsPerSecond = 40, isPaused = false } = 
     return () => element.removeEventListener('scroll', wrapAround)
   }, [ref])
 
+  /*
+    Terlihat di layar atau tidak.
+
+    Tanpa ini gerakannya tetap berjalan walaupun pengunjung sedang membaca
+    bagian lain halaman: tidak ada yang melihatnya, tapi tenaga baterai dan
+    waktu kerja browser tetap terpakai. Di beranda ada dua deretan sekaligus.
+
+    Nilai awalnya false — IntersectionObserver langsung melapor begitu dipasang,
+    jadi yang memang sedang terlihat akan menyala sesaat kemudian.
+  */
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting))
+    observer.observe(element)
+
+    // Wajib: tanpa ini pengamatnya tertinggal saat komponen dilepas.
+    return () => observer.disconnect()
+  }, [ref])
+
   // Gerakan otomatis.
   useEffect(() => {
     const element = ref.current
-    if (!element || isPaused) return
+    if (!element || isPaused || !isVisible) return
 
     // Pengunjung yang mematikan animasi: tidak digerakkan sama sekali,
     // tapi tetap bisa digeser sendiri.
@@ -74,5 +99,5 @@ export function useAutoScroll(ref, { pixelsPerSecond = 40, isPaused = false } = 
 
     // Wajib: menghentikan gerakan saat komponen dilepas atau saat dijeda.
     return () => cancelAnimationFrame(frame)
-  }, [ref, pixelsPerSecond, isPaused])
+  }, [ref, pixelsPerSecond, isPaused, isVisible])
 }
