@@ -27,6 +27,24 @@ document.addEventListener('click', (event) => {
 });
 
 /*
+  Tampilkan/sembunyikan password di halaman login.
+  Caranya cukup menukar type input: "password" (titik-titik) <-> "text" (terbaca).
+  Label tombol ikut ditukar supaya pembaca layar menyebut aksi yang benar,
+  dan ikon mata ditukar supaya keadaannya terlihat.
+*/
+const passwordToggle = document.getElementById('password-toggle');
+
+passwordToggle?.addEventListener('click', () => {
+    const input = document.getElementById(passwordToggle.getAttribute('aria-controls'));
+    const isHidden = input.type === 'password';
+
+    input.type = isHidden ? 'text' : 'password';
+    passwordToggle.setAttribute('aria-label', isHidden ? 'Sembunyikan password' : 'Tampilkan password');
+    passwordToggle.querySelector('[data-icon="show"]').classList.toggle('hidden', isHidden);
+    passwordToggle.querySelector('[data-icon="hide"]').classList.toggle('hidden', !isHidden);
+});
+
+/*
   Konfirmasi hapus memakai <dialog> supaya tampilannya mengikuti tema,
   bukan kotak confirm() bawaan browser.
 
