@@ -160,3 +160,184 @@ document.querySelectorAll('[data-dropzone]').forEach((zone) => {
         input.dispatchEvent(new Event('change'));
     });
 });
+
+/*
+  Potong gambar jadi persegi sebelum diunggah (input dengan data-crop).
+
+  Alurnya:
+  1. Gambar dipilih/dijatuhkan -> jendela potong dibuka.
+  2. Gambar digeser (mouse, jari, atau tombol panah) dan diperbesar (penggeser).
+     Yang terlihat di kotak = yang nanti tampil di website.
+  3. "Pakai foto ini" -> bagian di dalam kotak digambar ulang ke <canvas>
+     berukuran 800x800, dijadikan file JPG, lalu MENGGANTIKAN file asli di
+     input. Jadi yang terkirim ke server hanya hasil potongannya.
+  "Batal" atau tombol Esc -> pilihan file dikosongkan.
+
+  Posisi disimpan sebagai x, y (pojok kiri atas gambar, relatif ke kotak)
+  dan scale (perbesaran). Gambar selalu menutupi kotak penuh: x dan y dibatasi
+  supaya tidak pernah ada celah kosong di pinggir.
+*/
+const CROP_SIZE = 800; // sama dengan ukuran foto yang diminta About.jsx dari Cloudinary
+const KEY_STEP = 10; // pergeseran per tekan tombol panah, dalam px
+
+document.querySelectorAll('input[type="file"][data-crop]').forEach((input) => {
+    const dialog = document.getElementById(input.dataset.crop);
+    const frame = dialog.querySelector('[data-crop-frame]');
+    const image = dialog.querySelector('[data-crop-image]');
+    const zoom = dialog.querySelector('[data-crop-zoom]');
+
+    let frameSize = 0;
+    let baseScale = 1; // perbesaran terkecil yang masih menutupi kotak penuh
+    let scale = 1;
+    let x = 0;
+    let y = 0;
+    let isConfirmed = false;
+    let isApplyingCrop = false; // true saat file hasil potongan sedang dipasang ke input
+
+    // Jaga supaya gambar selalu menutupi kotak, lalu gambar ulang posisinya.
+    function render() {
+        x = Math.min(0, Math.max(frameSize - image.naturalWidth * scale, x));
+        y = Math.min(0, Math.max(frameSize - image.naturalHeight * scale, y));
+        image.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    }
+
+    // Ubah perbesaran dengan titik tengah kotak tetap di tempat.
+    function setZoom(value) {
+        const centerX = (frameSize / 2 - x) / scale;
+        const centerY = (frameSize / 2 - y) / scale;
+
+        zoom.value = Math.min(zoom.max, Math.max(zoom.min, value));
+        scale = baseScale * zoom.value;
+        x = frameSize / 2 - centerX * scale;
+        y = frameSize / 2 - centerY * scale;
+        render();
+    }
+
+    function clearSelection() {
+        input.value = '';
+        input.dispatchEvent(new Event('change')); // pratinjau & label dropzone ikut kosong
+    }
+
+    input.addEventListener('change', () => {
+        // Perubahan ini dipicu oleh kita sendiri (hasil potongan dipasang): jangan buka lagi.
+        if (isApplyingCrop) {
+            isApplyingCrop = false;
+            return;
+        }
+
+        const [file] = input.files;
+        if (!file) return;
+
+        image.onload = () => {
+            isConfirmed = false;
+            dialog.showModal();
+
+            // Ukuran kotak baru bisa diukur setelah dialog tampil.
+            frameSize = frame.getBoundingClientRect().width;
+            baseScale = frameSize / Math.min(image.naturalWidth, image.naturalHeight);
+            image.style.width = `${image.naturalWidth}px`;
+            image.style.height = `${image.naturalHeight}px`;
+
+            // Mulai dari ukuran terkecil, gambar di tengah.
+            zoom.value = 1;
+            scale = baseScale;
+            x = (frameSize - image.naturalWidth * scale) / 2;
+            y = (frameSize - image.naturalHeight * scale) / 2;
+            render();
+            frame.focus();
+        };
+        // Berkas yang ternyata bukan gambar: tidak bisa dipotong, kosongkan saja.
+        image.onerror = clearSelection;
+        image.src = URL.createObjectURL(file);
+    });
+
+    zoom.addEventListener('input', () => setZoom(Number(zoom.value)));
+
+    // Geser dengan mouse atau jari. setPointerCapture: gerakan tetap terbaca
+    // walau kursor keluar dari kotak saat sedang menggeser.
+    let dragStart = null;
+
+    frame.addEventListener('pointerdown', (event) => {
+        frame.setPointerCapture(event.pointerId);
+        dragStart = { pointerX: event.clientX, pointerY: event.clientY, x, y };
+    });
+
+    frame.addEventListener('pointermove', (event) => {
+        if (!dragStart) return;
+        x = dragStart.x + event.clientX - dragStart.pointerX;
+        y = dragStart.y + event.clientY - dragStart.pointerY;
+        render();
+    });
+
+    // pointercancel: sentuhan terputus (misalnya ada notifikasi) — anggap selesai juga.
+    const endDrag = () => {
+        dragStart = null;
+    };
+    frame.addEventListener('pointerup', endDrag);
+    frame.addEventListener('pointercancel', endDrag);
+
+    // Roda mouse untuk memperbesar. preventDefault: halaman di belakang tidak ikut bergulir.
+    frame.addEventListener('wheel', (event) => {
+        event.preventDefault();
+        setZoom(Number(zoom.value) - Math.sign(event.deltaY) * 0.1);
+    }, { passive: false });
+
+    // Keyboard: panah menggeser, + dan - memperbesar/memperkecil.
+    frame.addEventListener('keydown', (event) => {
+        const moves = {
+            ArrowLeft: [KEY_STEP, 0],
+            ArrowRight: [-KEY_STEP, 0],
+            ArrowUp: [0, KEY_STEP],
+            ArrowDown: [0, -KEY_STEP],
+        };
+
+        if (moves[event.key]) {
+            event.preventDefault();
+            x += moves[event.key][0];
+            y += moves[event.key][1];
+            render();
+        } else if (event.key === '+' || event.key === '=') {
+            setZoom(Number(zoom.value) + 0.1);
+        } else if (event.key === '-') {
+            setZoom(Number(zoom.value) - 0.1);
+        }
+    });
+
+    dialog.querySelector('[data-crop-cancel]').addEventListener('click', () => dialog.close());
+
+    dialog.querySelector('[data-crop-confirm]').addEventListener('click', async () => {
+        // Bagian gambar asli yang sedang terlihat di kotak, dalam ukuran asli gambar.
+        const sourceX = -x / scale;
+        const sourceY = -y / scale;
+        const sourceSize = frameSize / scale;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = CROP_SIZE;
+        canvas.height = CROP_SIZE;
+        canvas.getContext('2d').drawImage(image, sourceX, sourceY, sourceSize, sourceSize, 0, 0, CROP_SIZE, CROP_SIZE);
+
+        /*
+          toDataURL, bukan toBlob: toBlob dikerjakan Chrome di "waktu senggang"
+          browser, jadi bisa tertunda sampai sekitar 1 detik tanpa tanda apa pun —
+          tombolnya terasa tidak bereaksi. toDataURL langsung selesai; fetch()
+          di bawah hanya mengubah teks "data:..." itu menjadi isi file.
+
+          JPG: didukung semua browser, dan untuk foto jauh lebih kecil daripada PNG.
+        */
+        const blob = await (await fetch(canvas.toDataURL('image/jpeg', 0.9))).blob();
+
+        const transfer = new DataTransfer();
+        transfer.items.add(new File([blob], 'foto-profil.jpg', { type: 'image/jpeg' }));
+
+        isConfirmed = true;
+        isApplyingCrop = true;
+        input.files = transfer.files;
+        input.dispatchEvent(new Event('change')); // pratinjau menampilkan hasil potongan
+        dialog.close();
+    });
+
+    // Ditutup tanpa "Pakai foto ini" (Batal atau Esc): pilihan dibatalkan.
+    dialog.addEventListener('close', () => {
+        if (!isConfirmed) clearSelection();
+    });
+});

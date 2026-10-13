@@ -28,4 +28,11 @@ export const PROFILE = {
   bio: profile.bio.split(/\r?\n\s*\r?\n/).filter(Boolean),
 
   photoAlt: profile.photo_alt,
+
+  /*
+    Alamat foto di Cloudinary, diunggah lewat dashboard. null kalau belum ada —
+    About.jsx lalu menampilkan ikon pengganti. "?? null" juga menjaga
+    portfolio.json lama yang belum punya kolom ini sama sekali.
+  */
+  photo: profile.photo_url ?? null,
 }

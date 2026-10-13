@@ -11,8 +11,10 @@ melainkan lewat dashboard admin di [`../backend/`](../backend/). Setelah itu
 jalankan `php artisan portfolio:export` di folder backend — perintah itu
 menulis ulang `src/data/portfolio.json` — lalu commit dan push.
 
-Yang masih diubah langsung di kode: menu navbar (`src/data/navigation.js`),
-tautan kontak (`src/data/contact.js`), dan foto profil (`src/assets/`).
+Foto profil juga diunggah lewat dashboard (halaman Profil), lalu ikut diekspor.
+
+Yang masih diubah langsung di kode: menu navbar (`src/data/navigation.js`)
+dan tautan kontak (`src/data/contact.js`).
 
 ---
 

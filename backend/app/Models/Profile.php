@@ -26,5 +26,7 @@ class Profile extends Model
         'tagline',
         'bio',
         'photo_alt',
+        'photo_url',
+        'photo_public_id',
     ];
 }

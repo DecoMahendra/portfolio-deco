@@ -6,10 +6,12 @@
         "location": "Indramayu, Jawa Barat",
         "availability": "Terbuka untuk project freelance",
         "tagline": "Full Stack Developer yang membangun website modern, responsif, dan berorientasi pada pengalaman pengguna.",
-        "bio": "Mahasiswa D4 Sistem Informasi Kota Cerdas di Politeknik Negeri Indramayu, dengan ketertarikan dalam membangun aplikasi web modern dari sisi frontend hingga backend.\n\nSaya senang mempelajari teknologi baru, menyelesaikan masalah melalui kode, dan mengembangkan project yang memiliki tampilan menarik serta fungsional.",
+        "bio": "Mahasiswa D4 Sistem Informasi Kota Cerdas di Politeknik Negeri Indramayu, dengan ketertarikan dalam membangun aplikasi web modern dari sisi frontend hingga backend.\r\n\r\nSaya senang mempelajari teknologi baru, menyelesaikan masalah melalui kode, dan mengembangkan project yang memiliki tampilan menarik serta fungsional.",
         "photo_alt": "Foto Deco Mahendra",
+        "photo_url": "https://res.cloudinary.com/tkm734a6/image/upload/v1791885171/portfolio/profile/v2elba5wyqvtx6wqn0tc.jpg",
+        "photo_public_id": "portfolio/profile/v2elba5wyqvtx6wqn0tc",
         "created_at": "2026-09-19T14:29:43.000000Z",
-        "updated_at": "2026-09-19T14:29:43.000000Z"
+        "updated_at": "2026-10-13T09:52:53.000000Z"
     },
     "skills": [
         {
