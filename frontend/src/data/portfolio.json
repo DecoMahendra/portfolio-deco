@@ -277,64 +277,74 @@
             "updated_at": "2026-09-19T14:29:53.000000Z",
             "images": [
                 {
-                    "id": 1,
+                    "id": 7,
                     "project_id": 1,
-                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840527/portfolio/projects/tj8plb09o65j5jkcqzxy.png",
-                    "public_id": "portfolio/projects/tj8plb09o65j5jkcqzxy",
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1791886027/portfolio/projects/g1clwmbaiunsrn5hypwt.png",
+                    "public_id": "portfolio/projects/g1clwmbaiunsrn5hypwt",
                     "alt": null,
                     "sort_order": 0,
-                    "created_at": "2026-09-19T17:55:29.000000Z",
-                    "updated_at": "2026-09-19T17:55:29.000000Z"
+                    "created_at": "2026-10-13T10:07:10.000000Z",
+                    "updated_at": "2026-10-13T10:18:10.000000Z"
                 },
                 {
-                    "id": 2,
+                    "id": 8,
                     "project_id": 1,
-                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840531/portfolio/projects/qo0zocyb6ultiuqhu7h0.png",
-                    "public_id": "portfolio/projects/qo0zocyb6ultiuqhu7h0",
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1791886030/portfolio/projects/slnrvutzncgqo2vn0jr4.png",
+                    "public_id": "portfolio/projects/slnrvutzncgqo2vn0jr4",
                     "alt": null,
                     "sort_order": 1,
-                    "created_at": "2026-09-19T17:55:32.000000Z",
-                    "updated_at": "2026-09-19T17:55:32.000000Z"
+                    "created_at": "2026-10-13T10:07:13.000000Z",
+                    "updated_at": "2026-10-13T10:18:10.000000Z"
                 },
                 {
-                    "id": 3,
+                    "id": 9,
                     "project_id": 1,
-                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840535/portfolio/projects/v48wqj2itxh8rc9brqi8.png",
-                    "public_id": "portfolio/projects/v48wqj2itxh8rc9brqi8",
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1791886034/portfolio/projects/a9upszj2idk0wqwkde9f.png",
+                    "public_id": "portfolio/projects/a9upszj2idk0wqwkde9f",
                     "alt": null,
                     "sort_order": 2,
-                    "created_at": "2026-09-19T17:55:36.000000Z",
-                    "updated_at": "2026-09-19T17:55:36.000000Z"
+                    "created_at": "2026-10-13T10:07:17.000000Z",
+                    "updated_at": "2026-10-13T10:18:10.000000Z"
                 },
                 {
-                    "id": 4,
+                    "id": 14,
                     "project_id": 1,
-                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840538/portfolio/projects/ukypzpfuhu8tnw57x6hy.png",
-                    "public_id": "portfolio/projects/ukypzpfuhu8tnw57x6hy",
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1791886561/portfolio/projects/pg8ftj0dhgrdo3trwmy8.png",
+                    "public_id": "portfolio/projects/pg8ftj0dhgrdo3trwmy8",
                     "alt": null,
                     "sort_order": 3,
-                    "created_at": "2026-09-19T17:55:39.000000Z",
-                    "updated_at": "2026-09-19T17:55:39.000000Z"
+                    "created_at": "2026-10-13T10:16:04.000000Z",
+                    "updated_at": "2026-10-13T10:18:10.000000Z"
                 },
                 {
-                    "id": 5,
+                    "id": 15,
                     "project_id": 1,
-                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840541/portfolio/projects/ioj49zttshil5p68qdpz.png",
-                    "public_id": "portfolio/projects/ioj49zttshil5p68qdpz",
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1791886564/portfolio/projects/mswgmufjpyrzrxmfeurn.png",
+                    "public_id": "portfolio/projects/mswgmufjpyrzrxmfeurn",
                     "alt": null,
                     "sort_order": 4,
-                    "created_at": "2026-09-19T17:55:42.000000Z",
-                    "updated_at": "2026-09-19T17:55:42.000000Z"
+                    "created_at": "2026-10-13T10:16:06.000000Z",
+                    "updated_at": "2026-10-13T10:18:10.000000Z"
                 },
                 {
-                    "id": 6,
+                    "id": 16,
                     "project_id": 1,
-                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1789840544/portfolio/projects/ffgp5f0qlxhqjhigtdy6.png",
-                    "public_id": "portfolio/projects/ffgp5f0qlxhqjhigtdy6",
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1791886567/portfolio/projects/kglq66b2rqxxn9phtact.png",
+                    "public_id": "portfolio/projects/kglq66b2rqxxn9phtact",
                     "alt": null,
                     "sort_order": 5,
-                    "created_at": "2026-09-19T17:55:45.000000Z",
-                    "updated_at": "2026-09-19T17:55:45.000000Z"
+                    "created_at": "2026-10-13T10:16:09.000000Z",
+                    "updated_at": "2026-10-13T10:18:10.000000Z"
+                },
+                {
+                    "id": 13,
+                    "project_id": 1,
+                    "url": "https://res.cloudinary.com/tkm734a6/image/upload/v1791886047/portfolio/projects/dk7qvuj7jt8lbwnlnl2c.png",
+                    "public_id": "portfolio/projects/dk7qvuj7jt8lbwnlnl2c",
+                    "alt": null,
+                    "sort_order": 6,
+                    "created_at": "2026-10-13T10:07:29.000000Z",
+                    "updated_at": "2026-10-13T10:18:10.000000Z"
                 }
             ]
         }
