@@ -10,12 +10,17 @@ use Illuminate\View\View;
 /*
   Profil hanya satu baris, jadi tidak ada daftar, tambah, atau hapus —
   cukup edit() untuk menampilkan form dan update() untuk menyimpannya.
+
+  Dipakai firstOrNew, bukan firstOrFail: di database yang masih kosong barisnya
+  belum ada. Dengan firstOrFail halamannya menjadi 404, jadi profil tidak akan
+  pernah bisa diisi lewat dashboard. firstOrNew memberi objek kosong yang belum
+  tersimpan, sehingga formnya tetap terbuka dan isian pertama bisa disimpan.
 */
 class ProfileController extends Controller
 {
     public function edit(): View
     {
-        return view('admin.profile.edit', ['profile' => Profile::firstOrFail()]);
+        return view('admin.profile.edit', ['profile' => Profile::firstOrNew()]);
     }
 
     public function update(Request $request): RedirectResponse
@@ -35,7 +40,9 @@ class ProfileController extends Controller
             'photo_alt' => ['required', 'string', 'max:255'],
         ]);
 
-        Profile::firstOrFail()->update($data);
+        // fill + save: satu jalur untuk dua keadaan — membuat baris pertama
+        // kalau belum ada, memperbarui kalau sudah ada.
+        Profile::firstOrNew()->fill($data)->save();
 
         return redirect()->route('admin.profile.edit')->with('status', 'Profil disimpan.');
     }
