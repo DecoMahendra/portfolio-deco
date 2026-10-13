@@ -73,34 +73,49 @@ function Marquee({ ariaLabel, children }) {
 
   return (
     /*
-      tabIndex & role: kotak yang isinya bisa digeser harus bisa dijangkau
-      keyboard, supaya penggunanya bisa menggeser dengan tombol panah.
+      Kotak fokus dipasang di pembungkus LUAR, bukan di kotak yang bisa digeser.
+      Alasannya: kotak geser punya mask-image (tepi memudar), dan efek itu ikut
+      menghapus kotak fokus yang dilukis elemen yang sama — kotaknya ada tapi
+      tidak terlihat. Pembungkus ini tidak memudar, jadi kotaknya utuh.
 
-      overflow-x-auto : yang membuat isinya bisa digeser (otomatis maupun manual)
-      scrollbar disembunyikan: batang gulirnya akan memotong tampilan kartu
-      touch-callout & select-none: menahan jari tidak memunculkan menu
-      mask-image      : kedua tepi memudar, kartu terlihat masuk dan keluar halus
-      scroll-px-10    : saat kartu disorot keyboard, browser menggulirnya
-                        sampai 2,5rem dari tepi — bukan mepet di bagian yang
-                        memudar, supaya kotak fokusnya benar-benar terlihat
+      has-[:focus-visible]: menyala saat APA PUN di dalamnya disorot keyboard —
+      deretannya sendiri maupun salah satu kartu. Saat yang disorot sebuah kartu,
+      memang tampil dua kotak sekaligus. Itu disengaja: kartu yang pas menempel
+      di tepi punya kotak sendiri yang tertutup bagian yang memudar, jadi kotak
+      luar inilah yang memastikan fokusnya selalu terlihat.
     */
-    <div
-      ref={trackRef}
-      tabIndex={0}
-      role="group"
-      aria-label={ariaLabel}
-      onPointerEnter={() => setIsHovered(true)}
-      onPointerLeave={handleLeave}
-      onPointerDown={() => setIsPressed(true)}
-      onPointerUp={() => setIsPressed(false)}
-      onPointerCancel={() => setIsPressed(false)}
-      onFocusCapture={() => setHasFocus(true)}
-      onBlurCapture={() => setHasFocus(false)}
-      className="overflow-x-auto scroll-px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] select-none [-webkit-touch-callout:none] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-    >
-      <div className="flex w-max">
-        {renderCopy(false)}
-        {renderCopy(true)}
+    <div className="rounded-card has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-accent">
+      {/*
+        tabIndex & role: kotak yang isinya bisa digeser harus bisa dijangkau
+        keyboard, supaya penggunanya bisa menggeser dengan tombol panah.
+
+        overflow-x-auto : yang membuat isinya bisa digeser (otomatis maupun manual)
+        scrollbar disembunyikan: batang gulirnya akan memotong tampilan kartu
+        touch-callout & select-none: menahan jari tidak memunculkan menu
+        mask-image      : kedua tepi memudar, kartu terlihat masuk dan keluar halus
+        scroll-px-20    : saat kartu disorot keyboard, browser menggulirnya sampai
+                          5rem dari tepi — lebih jauh dari bagian yang memudar,
+                          supaya kartunya benar-benar terlihat jelas
+        outline-none    : kotak fokusnya diurus pembungkus di atas
+      */}
+      <div
+        ref={trackRef}
+        tabIndex={0}
+        role="group"
+        aria-label={ariaLabel}
+        onPointerEnter={() => setIsHovered(true)}
+        onPointerLeave={handleLeave}
+        onPointerDown={() => setIsPressed(true)}
+        onPointerUp={() => setIsPressed(false)}
+        onPointerCancel={() => setIsPressed(false)}
+        onFocusCapture={() => setHasFocus(true)}
+        onBlurCapture={() => setHasFocus(false)}
+        className="overflow-x-auto scroll-px-20 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] select-none [-webkit-touch-callout:none] focus-visible:outline-none"
+      >
+        <div className="flex w-max">
+          {renderCopy(false)}
+          {renderCopy(true)}
+        </div>
       </div>
     </div>
   )
