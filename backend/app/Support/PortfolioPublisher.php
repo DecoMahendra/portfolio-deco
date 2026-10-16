@@ -54,6 +54,14 @@ class PortfolioPublisher
             throw new RuntimeException('Terbitkan hanya bisa dari branch main.');
         }
 
+        // Diperiksa di awal supaya pesannya jelas, bukan error git yang panjang di tengah jalan.
+        if (! self::hasGitIdentity()) {
+            throw new RuntimeException(
+                'Git tidak menemukan nama/email Anda. Atur lewat terminal: '
+                .'git config --global user.name "Nama Anda" dan git config --global user.email "email@anda.com".'
+            );
+        }
+
         self::export();
 
         $otherFiles = array_values(array_diff(self::unpushedFiles(), [self::DATA_FILE]));
@@ -79,6 +87,16 @@ class PortfolioPublisher
         return 'Diterbitkan. Website akan berubah dalam sekitar 1 menit.';
     }
 
+    private static function hasGitIdentity(): bool
+    {
+        try {
+            return self::git('config', 'user.email') !== '';
+        } catch (RuntimeException) {
+            // "git config" gagal (kode keluar 1) kalau pengaturannya tidak ditemukan sama sekali.
+            return false;
+        }
+    }
+
     private static function dataFileChanged(): bool
     {
         return self::git('status', '--porcelain', '--', self::DATA_FILE) !== '';
@@ -94,10 +112,26 @@ class PortfolioPublisher
 
     private static function git(string ...$args): string
     {
-        $result = Process::path(self::root())->timeout(60)->run(['git', ...$args]);
+        /*
+          env(getenv()): teruskan SEMUA variabel lingkungan ke git.
+
+          Tanpa ini, saat dijalankan dari halaman web, Process hanya meneruskan
+          variabel yang juga ada di $_SERVER — dan USERPROFILE/HOME tidak ada di
+          sana. Akibatnya git tidak menemukan folder profil pengguna: commit gagal
+          "Author identity unknown" (nama & email ada di ~/.gitconfig), dan push
+          gagal karena Credential Manager tidak tahu letak data loginnya.
+          Dari terminal masalah ini tidak muncul, karena di sana semua variabel ikut.
+        */
+        $result = Process::path(self::root())->env(getenv())->timeout(60)->run(['git', ...$args]);
 
         if ($result->failed()) {
-            throw new RuntimeException('Perintah "git '.$args[0].'" gagal: '.trim($result->errorOutput()));
+            // Baris peringatan akhir baris (CRLF/LF) dibuang: tidak berbahaya,
+            // tapi menenggelamkan pesan error yang sebenarnya.
+            $error = collect(preg_split('/\R/', trim($result->errorOutput())))
+                ->reject(fn ($line) => str_starts_with($line, 'warning: in the working copy'))
+                ->implode(' ');
+
+            throw new RuntimeException('Perintah "git '.$args[0].'" gagal: '.$error);
         }
 
         return trim($result->output());
