@@ -7,9 +7,9 @@ Status saat ini: **online, isinya diambil dari dashboard admin.**
 ## Mengubah isi website
 
 Teks, skill, pengalaman, project, dan sertifikat **tidak** diubah di kode,
-melainkan lewat dashboard admin di [`../backend/`](../backend/). Setelah itu
-jalankan `php artisan portfolio:export` di folder backend — perintah itu
-menulis ulang `src/data/portfolio.json` — lalu commit dan push.
+melainkan lewat dashboard admin di [`../backend/`](../backend/). Setiap klik
+Simpan di dashboard menulis ulang `src/data/portfolio.json`, jadi `npm run dev`
+langsung ikut berubah. Untuk website hosting, klik **Terbitkan** di dashboard.
 
 Foto profil juga diunggah lewat dashboard (halaman Profil), lalu ikut diekspor.
 

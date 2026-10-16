@@ -64,6 +64,29 @@
 
     <main class="mx-auto max-w-5xl px-6 py-10">
         {{-- Pesan sekali tampil setelah simpan/hapus, dikirim lewat session. --}}
+        {{-- Peringatan: misalnya terbitkan gagal karena tidak ada internet. --}}
+        @if (session('warning'))
+            <p class="mb-6 rounded-md border border-danger bg-raised px-4 py-3 text-sm text-danger">
+                {{ session('warning') }}
+            </p>
+        @endif
+
+        {{--
+          Muncul selama isi dashboard berbeda dari yang tampil di website hosting.
+          Simpan saja sudah cukup untuk localhost; ini pengingat untuk menerbitkannya.
+          min-h-11 pada tombol: kotak ini memakai text-sm, dan tombol ikut mengecil
+          sampai 40px — di bawah batas area sentuh 44px.
+        --}}
+        @if ($hasUnpublishedChanges)
+            <div class="mb-6 flex flex-col gap-3 rounded-md border border-line bg-raised px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+                <p>Ada perubahan yang belum diterbitkan ke website. Cek dulu di localhost, lalu terbitkan kalau sudah sesuai.</p>
+                <form method="POST" action="{{ route('admin.publish') }}" class="shrink-0">
+                    @csrf
+                    <x-button class="min-h-11 w-full sm:w-auto">Terbitkan</x-button>
+                </form>
+            </div>
+        @endif
+
         @if (session('status'))
             <p class="mb-6 rounded-md border border-accent-deep bg-raised px-4 py-3 text-sm text-accent">
                 {{ session('status') }}

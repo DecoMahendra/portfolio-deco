@@ -17,10 +17,11 @@ Dashboard admin (laptop)  ──►  Database MySQL (Aiven, online)
         │                          ▲
         │ unggah gambar            │ data
         ▼                          │
-   Cloudinary (online)     php artisan portfolio:export
+   Cloudinary (online)     ekspor otomatis setiap Simpan
                                    │
                                    ▼
-                  frontend/src/data/portfolio.json  ──►  git push  ──►  Vercel
+                  frontend/src/data/portfolio.json  ──►  tombol Terbitkan  ──►  Vercel
+                       (dibaca npm run dev)              (commit + push)
 ```
 
 - **Data** tersimpan di Aiven, bukan di laptop — aman kalau laptop rusak.
@@ -36,15 +37,16 @@ Ini yang paling sering dikerjakan:
 
 1. **Pastikan database Aiven menyala** — lihat [di bawah](#database-online-aiven)
 2. Jalankan dashboard: `php artisan serve`, buka `http://127.0.0.1:8000`
-3. Ubah isi lewat dashboard
-4. Tulis ulang berkas data untuk frontend:
-   ```bash
-   php artisan portfolio:export
-   ```
-5. Commit dan push `frontend/src/data/portfolio.json` — Vercel membangun
-   ulang website dalam 1–2 menit
+3. Ubah isi lewat dashboard, lalu klik **Simpan**. Berkas data untuk frontend
+   (`frontend/src/data/portfolio.json`) langsung ditulis ulang, jadi `npm run dev`
+   di localhost ikut berubah — tanpa commit, tanpa push.
+4. Kalau sudah sesuai, klik **Terbitkan** di kotak "Ada perubahan yang belum
+   diterbitkan" (muncul di atas setiap halaman dashboard). Dashboard menjalankan
+   commit + push sendiri, dan Vercel membangun ulang website dalam sekitar 1 menit.
 
-Langkah 4–5 wajib. Tanpa itu, perubahan di dashboard **tidak** muncul di website.
+Tombol Terbitkan hanya meng-commit `portfolio.json`, dan menolak kalau ada commit
+lain yang belum di-push — supaya kode yang belum siap tidak ikut terbit.
+Kalau ditolak, push dulu lewat terminal (kalau memang sudah siap), lalu tekan lagi.
 
 ---
 
@@ -86,7 +88,7 @@ jalankan `npm run build` lagi supaya CSS-nya ikut diperbarui.
 | Perintah | Fungsinya |
 |---|---|
 | `php artisan serve` | Menjalankan dashboard di komputer sendiri |
-| `php artisan portfolio:export` | Menulis isi database ke `frontend/src/data/portfolio.json` |
+| `php artisan portfolio:export` | Menulis isi database ke `frontend/src/data/portfolio.json`. Biasanya tidak perlu: dashboard menjalankannya otomatis setiap Simpan |
 | `php artisan admin:create` | Membuat akun admin — satu-satunya cara, tidak ada halaman daftar |
 | `php artisan migrate` | Menerapkan perubahan struktur tabel ke database |
 | `php artisan migrate:status` | Melihat migrasi mana yang sudah dijalankan |

@@ -8,8 +8,10 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectImageController;
+use App\Http\Controllers\PublishController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\SkillGroupController;
+use App\Http\Middleware\ExportPortfolioAfterChange;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,9 +37,14 @@ Route::middleware('auth')->group(function () {
     /*
       prefix('admin') : semua alamat di dalamnya diawali /admin/...
       name('admin.')  : semua nama route diawali admin. — dipakai di route('admin.xxx')
+      ExportPortfolioAfterChange : setiap simpan/ubah/hapus langsung menulis ulang
+                        portfolio.json, supaya localhost ikut berubah
     */
-    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('admin')->name('admin.')->middleware(ExportPortfolioAfterChange::class)->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
+
+        // Tombol "Terbitkan": ekspor + commit + push supaya website hosting ikut berubah.
+        Route::post('publish', PublishController::class)->name('publish');
 
         Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');

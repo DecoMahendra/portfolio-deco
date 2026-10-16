@@ -38,9 +38,10 @@ dinyalakan lagi lewat console Aiven.
 
 ## Memperbarui isi website
 
-1. Ubah isi lewat dashboard admin
-2. `php artisan portfolio:export` (di folder `backend`)
-3. Commit dan push — Vercel membangun ulang website otomatis
+1. Ubah isi lewat dashboard admin, lalu klik Simpan — `npm run dev` di localhost
+   langsung ikut berubah
+2. Kalau sudah sesuai, klik **Terbitkan** di dashboard — website hosting berubah
+   dalam sekitar 1 menit
 
 Detail dan penanganan masalah: [backend/README.md](backend/README.md#memperbarui-isi-website).
 
