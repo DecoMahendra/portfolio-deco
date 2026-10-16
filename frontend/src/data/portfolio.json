@@ -365,12 +365,12 @@
             "id": 2,
             "name": "Pemateri Kegiatan Himpunan Mahasiswa",
             "organizer": "HIMA-SIKC Politeknik Negeri Indramayu",
-            "year": "2024, 2025",
-            "image_url": null,
-            "image_public_id": null,
+            "year": "2025",
+            "image_url": "https://res.cloudinary.com/tkm734a6/image/upload/v1791888453/portfolio/certificates/jqxjccl7ogrdtetcdzaz.jpg",
+            "image_public_id": "portfolio/certificates/jqxjccl7ogrdtetcdzaz",
             "sort_order": 1,
             "created_at": "2026-09-19T14:29:54.000000Z",
-            "updated_at": "2026-09-19T14:29:54.000000Z"
+            "updated_at": "2026-10-13T10:47:35.000000Z"
         },
         {
             "id": 3,
