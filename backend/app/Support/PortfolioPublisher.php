@@ -121,8 +121,13 @@ class PortfolioPublisher
           "Author identity unknown" (nama & email ada di ~/.gitconfig), dan push
           gagal karena Credential Manager tidak tahu letak data loginnya.
           Dari terminal masalah ini tidak muncul, karena di sana semua variabel ikut.
+
+          GIT_TERMINAL_PROMPT & GCM_INTERACTIVE: jangan pernah MENUNGGU masukan
+          (misalnya login GitHub kedaluwarsa). Dari halaman web tidak ada yang bisa
+          mengetik jawabannya, jadi lebih baik langsung gagal dengan pesan yang jelas.
         */
-        $result = Process::path(self::root())->env(getenv())->timeout(60)->run(['git', ...$args]);
+        $env = [...getenv(), 'GIT_TERMINAL_PROMPT' => '0', 'GCM_INTERACTIVE' => 'never'];
+        $result = Process::path(self::root())->env($env)->timeout(60)->run(['git', ...$args]);
 
         if ($result->failed()) {
             // Baris peringatan akhir baris (CRLF/LF) dibuang: tidak berbahaya,

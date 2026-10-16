@@ -14,6 +14,13 @@ class PublishController extends Controller
 {
     public function __invoke(): RedirectResponse
     {
+        /*
+          PHP memutus halaman setelah 30 detik. Ekspor + commit + push biasanya
+          hanya beberapa detik, tapi bisa lebih lama saat internet pelan — dan
+          kalau terputus di tengah, yang terlihat hanya halaman error tanpa pesan.
+        */
+        set_time_limit(120);
+
         try {
             $message = PortfolioPublisher::publish();
         } catch (Throwable $e) {
