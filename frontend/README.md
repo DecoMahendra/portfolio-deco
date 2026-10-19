@@ -74,8 +74,8 @@ frontend/
 │   └── index.css      Design system: warna, font, ukuran, gaya dasar
 ├── scripts/           Dijalankan setelah build, bukan bagian dari website:
 │                        prerender-meta.mjs (pratinjau link + sitemap.xml)
-├── vercel.json        Aturan Vercel: folder hasil build + alamat dalam
-│                        tetap memuat website
+├── vercel.json        Aturan Vercel: folder hasil build, alamat dalam
+│                        tetap memuat website, header keamanan
 ├── index.html         Kerangka HTML. Isi <head> untuk SEO & font ada di sini
 ├── vite.config.js     Pengaturan Vite (plugin React & Tailwind didaftarkan di sini)
 └── package.json       Daftar library yang dipakai project ini
@@ -140,12 +140,26 @@ Tiga hal yang mudah terlupa saat menambah halaman baru:
 
 - **Link ke section beranda ditulis `/#about`**, bukan `#about`. Tanpa garis
   miring, dari halaman lain ia menuju `/projects#about` yang tidak ada.
-- **`vercel.json`** berisi dua hal: aturan supaya membuka alamat dalam secara
-  langsung (misalnya dari link yang dibagikan) tetap memuat website, dan
-  penyebutan folder hasil build (`dist`). Bagian kedua itu WAJIB: begitu
-  `vercel.json` ada, Vercel berhenti menebak sendiri jenis project-nya dan
-  mencari folder bernama `build` — kalau tidak disebutkan, semua deployment
-  gagal dengan pesan *No Output Directory named "build" found*.
+- **`vercel.json`** berisi tiga hal: aturan supaya membuka alamat dalam secara
+  langsung (misalnya dari link yang dibagikan) tetap memuat website,
+  penyebutan folder hasil build (`dist`), dan header keamanan. Bagian kedua itu
+  WAJIB: begitu `vercel.json` ada, Vercel berhenti menebak sendiri jenis
+  project-nya dan mencari folder bernama `build` — kalau tidak disebutkan,
+  semua deployment gagal dengan pesan *No Output Directory named "build" found*.
+
+  Header keamanan dikirim bersama setiap halaman, dan berkas JSON tidak bisa
+  diberi komentar, jadi penjelasannya di sini:
+  - `X-Frame-Options: DENY` — website tidak bisa disisipkan diam-diam ke situs
+    lain untuk menipu klik pengunjung (*clickjacking*).
+  - `X-Content-Type-Options: nosniff` — browser tidak menebak-nebak jenis
+    berkas; berkas teks tidak akan pernah dijalankan sebagai kode.
+  - `Referrer-Policy: strict-origin-when-cross-origin` — saat pengunjung
+    mengklik tautan keluar, situs tujuan hanya tahu asalnya dari
+    `decomahendra.vercel.app`, bukan alamat lengkap halamannya.
+  - `Permissions-Policy` — kamera, mikrofon, dan lokasi dimatikan, karena
+    website ini memang tidak pernah memakainya.
+
+  HSTS (paksa HTTPS) tidak perlu ditulis: Vercel sudah mengirimnya sendiri.
 - **Alamat kanonik** ditulis di masing-masing halaman, bukan di `index.html`.
   Kalau ditulis sekali di `index.html`, semua halaman akan mengaku sebagai
   beranda dan Google bisa berhenti mengindeks halaman lainnya.
