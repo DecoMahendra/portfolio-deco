@@ -89,6 +89,7 @@ jalankan `npm run build` lagi supaya CSS-nya ikut diperbarui.
 |---|---|
 | `php artisan serve` | Menjalankan dashboard di komputer sendiri |
 | `php artisan portfolio:export` | Menulis isi database ke `frontend/src/data/portfolio.json`. Biasanya tidak perlu: dashboard menjalankannya otomatis setiap Simpan |
+| `php artisan portfolio:import` | Kebalikannya: mengisi database **kosong** dari `portfolio.json` — untuk memulihkan data, lihat [di bawah](#kalau-data-di-aiven-hilang) |
 | `php artisan admin:create` | Membuat akun admin — satu-satunya cara, tidak ada halaman daftar |
 | `php artisan migrate` | Menerapkan perubahan struktur tabel ke database |
 | `php artisan migrate:status` | Melihat migrasi mana yang sudah dijalankan |
@@ -116,6 +117,28 @@ Aiven biasanya mengirim email peringatan sebelum mematikan.
 Koneksinya wajib SSL. Sertifikat CA-nya ada di `storage/certs/ca.pem` dan
 sengaja ikut masuk Git: sertifikat bukan rahasia, isinya hanya identitas
 server. Yang rahasia adalah password di `.env`.
+
+### Kalau data di Aiven hilang
+
+Isi portfolio punya cadangan: `frontend/src/data/portfolio.json` berisi seluruh
+data, dan ikut ter-commit setiap kali tombol **Terbitkan** ditekan. Jadi selama
+pernah diterbitkan, datanya bisa dipulihkan tanpa mengetik ulang:
+
+1. Siapkan database kosong (service Aiven baru, atau database baru di XAMPP)
+   dan arahkan `.env` ke sana, lalu `php artisan config:clear`
+2. `php artisan migrate` — membuat tabel-tabel kosong
+3. `php artisan portfolio:import` — mengisi tabel dari `portfolio.json`
+4. `php artisan admin:create` — akun admin tidak ikut dicadangkan, buat ulang
+
+Gambar tidak perlu dipulihkan: berkasnya tetap di Cloudinary, dan alamatnya
+ikut kembali lewat langkah 3.
+
+Perintah impor **menolak** database yang sudah berisi data, jadi tidak mungkin
+menimpa atau menggandakan data yang ada walaupun salah dijalankan. Kalau gagal
+di tengah, tidak ada yang tersimpan sama sekali.
+
+Ingin kembali ke isi yang lebih lama? Ambil versi lama berkasnya dulu, misalnya
+`git checkout <commit> -- frontend/src/data/portfolio.json`, lalu impor.
 
 ### Beralih ke MySQL XAMPP
 
