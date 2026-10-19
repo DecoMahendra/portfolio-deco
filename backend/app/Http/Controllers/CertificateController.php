@@ -7,6 +7,7 @@ use App\Services\Cloudinary;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Throwable;
 
 /*
   Pola yang sama dengan ExperienceController, ditambah satu gambar opsional
@@ -48,35 +49,55 @@ class CertificateController extends Controller
     public function update(Request $request, Certificate $certificate, Cloudinary $cloudinary): RedirectResponse
     {
         $data = $this->validated($request);
+        $oldImageId = $certificate->image_public_id;
+        $uploaded = null;
 
         /*
           Tiga kemungkinan dari form:
-          - ada file baru      : hapus gambar lama (kalau ada), unggah yang baru
-          - centang "hapus"    : hapus gambar lama, kosongkan kolomnya
+          - ada file baru      : unggah yang baru, gambar lama dihapus SETELAH tersimpan
+          - centang "hapus"    : kosongkan kolomnya, gambar lama dihapus SETELAH tersimpan
           - tidak keduanya     : gambar tidak disentuh
-        */
-        if ($request->hasFile('image') || $request->boolean('remove_image')) {
-            if ($certificate->image_public_id) {
-                $cloudinary->delete($certificate->image_public_id);
-            }
 
-            $data += $request->hasFile('image')
-                ? $this->uploaded($cloudinary, $request)
-                : ['image_url' => null, 'image_public_id' => null];
+          Gambar lama sengaja dihapus paling akhir. Kalau dihapus duluan lalu
+          langkah berikutnya gagal, database masih menunjuk ke gambar yang sudah
+          tidak ada, dan website menampilkan gambar rusak.
+        */
+        $isReplacingImage = $request->hasFile('image') || $request->boolean('remove_image');
+
+        if ($request->hasFile('image')) {
+            $uploaded = $this->uploaded($cloudinary, $request);
+            $data += $uploaded;
+        } elseif ($request->boolean('remove_image')) {
+            $data += ['image_url' => null, 'image_public_id' => null];
         }
 
-        $certificate->updateAtPosition($data);
+        try {
+            $certificate->updateAtPosition($data);
+        } catch (Throwable $e) {
+            // Simpan gagal: gambar yang barusan terunggah tidak dipakai siapa pun — hapus lagi.
+            if ($uploaded) {
+                $cloudinary->delete($uploaded['image_public_id']);
+            }
+
+            throw $e;
+        }
+
+        if ($isReplacingImage && $oldImageId) {
+            $cloudinary->delete($oldImageId);
+        }
 
         return redirect()->route('admin.certificates.index')->with('status', 'Sertifikat disimpan.');
     }
 
     public function destroy(Certificate $certificate, Cloudinary $cloudinary): RedirectResponse
     {
+        // Database dulu, baru gambarnya. Kalau dibalik dan menghapus barisnya gagal,
+        // sertifikat masih tampil tapi gambarnya sudah hilang dari Cloudinary.
+        $certificate->deleteAndCloseGap();
+
         if ($certificate->image_public_id) {
             $cloudinary->delete($certificate->image_public_id);
         }
-
-        $certificate->deleteAndCloseGap();
 
         return redirect()->route('admin.certificates.index')->with('status', 'Sertifikat dihapus.');
     }

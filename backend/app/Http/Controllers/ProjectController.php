@@ -66,13 +66,21 @@ class ProjectController extends Controller
 
     public function destroy(Project $project, Cloudinary $cloudinary): RedirectResponse
     {
-        // Baris di tabel project_images ikut terhapus oleh database (cascade),
-        // tapi file di Cloudinary harus dihapus sendiri satu per satu.
-        foreach ($project->images as $image) {
-            $cloudinary->delete($image->public_id);
-        }
+        /*
+          Baris di tabel project_images ikut terhapus oleh database (cascade),
+          tapi file di Cloudinary harus dihapus sendiri satu per satu.
+
+          Daftarnya dicatat DULU, karena setelah project dihapus barisnya sudah
+          tidak bisa dibaca. Lalu database dulu, baru gambarnya: kalau dibalik
+          dan menghapus project gagal, project masih tampil tanpa gambar.
+        */
+        $imageIds = $project->images->pluck('public_id');
 
         $project->deleteAndCloseGap();
+
+        foreach ($imageIds as $publicId) {
+            $cloudinary->delete($publicId);
+        }
 
         return redirect()->route('admin.projects.index')->with('status', 'Project dihapus.');
     }

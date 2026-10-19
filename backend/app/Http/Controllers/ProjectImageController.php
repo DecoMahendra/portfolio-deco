@@ -17,9 +17,13 @@ class ProjectImageController extends Controller
 {
     public function destroy(ProjectImage $projectImage, Cloudinary $cloudinary): RedirectResponse
     {
-        $cloudinary->delete($projectImage->public_id);
-        $projectImage->deleteAndCloseGap();
+        $project = $projectImage->project;
 
-        return redirect()->route('admin.projects.edit', $projectImage->project)->with('status', 'Gambar dihapus.');
+        // Database dulu, baru gambarnya. Kalau dibalik dan menghapus barisnya gagal,
+        // database masih menunjuk ke gambar yang sudah hilang dari Cloudinary.
+        $projectImage->deleteAndCloseGap();
+        $cloudinary->delete($projectImage->public_id);
+
+        return redirect()->route('admin.projects.edit', $project)->with('status', 'Gambar dihapus.');
     }
 }
